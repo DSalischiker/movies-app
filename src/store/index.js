@@ -5,30 +5,45 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    baseURL: "https://api.themoviedb.org/3/movie/popular?api_key=",
+    baseURL: "https://api.themoviedb.org/3/",
     movies: [],
+    genres: [],
   },
   mutations: {
-    setMovies(state, movies){
+    setMovies(state, movies) {
       state.movies = movies;
     },
+    setGenres(state, genres){
+      state.genres = genres;
+    }
   },
   actions: {
-    getAPIData({ commit, getters }) {
+    getMoviesFromAPI({ commit, getters }) {
       axios
-        .get(getters.getURL)
+        .get(getters.getMoviesURL)
         .then((response) => {
           commit("setMovies", response.data.results);
         })
         .catch((error) => console.error(error));
     },
+    getGenresFromAPI({ commit, getters }) {
+      axios
+        .get(getters.getGenresURL)
+        .then((response) => {
+          commit("setGenres", response.data.genres);
+        })
+        .catch((error) => console.error(error));
+    },
   },
   getters: {
-    getURL: (state, getters) => {
-      return `${state.baseURL}${getters.getApiKey}&language=en-US&page=1`;
-    },
     getApiKey: () => {
       return process.env.VUE_APP_API_KEY;
+    },
+    getMoviesURL: (state, getters) => {
+      return `${state.baseURL}movie/popular?api_key=${getters.getApiKey}&language=en-US&page=1`;
+    },
+    getGenresURL: (state, getters) => {
+      return `${state.baseURL}genre/movie/list?api_key=${getters.getApiKey}&language=en-US`;
     },
   },
   modules: {},

@@ -1,8 +1,9 @@
 <template>
   <div class="movie__list">
+    <GenresList />
     <ul>
       <li v-for="(movie, $index) in movies" :key="$index">
-        {{movie.title}}
+        {{ movie.title }}
       </li>
     </ul>
   </div>
@@ -10,19 +11,19 @@
 
 <script>
 // @ is an alias to /src
-
+import GenresList from "../components/GenresList.vue";
 export default {
   name: "MovieList",
-  mounted(){
-    this.$store.dispatch('getAPIData');
+  components: {
+    GenresList,
   },
-  computed:{
+  mounted() {
+    this.$store.dispatch("getMoviesFromAPI");
+  },
+  computed: {
     movies() {
       return this.$store.state.movies;
-    }
-  },
-  components: {
-
+    },
   },
 };
 </script>
