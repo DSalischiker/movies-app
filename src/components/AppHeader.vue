@@ -19,5 +19,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2b2b2b;
+    color: white;
+    .header__title{
+        margin-left: 2em;
+    }
+    .header__nav{
+        margin-right: 2em;
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
 </style>
