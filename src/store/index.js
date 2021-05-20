@@ -8,6 +8,8 @@ const store = new Vuex.Store({
     baseURL: "https://api.themoviedb.org/3/",
     movies: [],
     genres: [],
+    selectedMovieId: null,
+    selectedMovieData: {},
   },
   mutations: {
     setMovies(state, movies) {
@@ -15,6 +17,12 @@ const store = new Vuex.Store({
     },
     setGenres(state, genres){
       state.genres = genres;
+    },
+    setSelectedMovieId(state, id){
+      state.selectedMovieId = id;
+    },
+    setMovieData(state, movie){
+      state.selectedMovieData = movie;
     }
   },
   actions: {
@@ -34,6 +42,14 @@ const store = new Vuex.Store({
         })
         .catch((error) => console.error(error));
     },
+    getMovieDataFromAPI({commit, getters}){
+      axios
+        .get(getters.getMovieDataURL)
+        .then((response) => {
+          commit("setMovieData", response.data);
+        })
+        .catch((error) => console.error(error));
+    },
   },
   getters: {
     getApiKey: () => {
@@ -45,6 +61,9 @@ const store = new Vuex.Store({
     getGenresURL: (state, getters) => {
       return `${state.baseURL}genre/movie/list?api_key=${getters.getApiKey}&language=en-US`;
     },
+    getMovieDataURL: (state, getters) => {
+      return `${state.baseURL}movie/${state.selectedMovieId}?api_key=${getters.getApiKey}&language=en-US`;
+    }
   },
   modules: {},
 });

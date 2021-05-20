@@ -3,7 +3,8 @@
     <GenresList />
     <ul>
       <li v-for="(movie, $index) in movies" :key="$index">
-        {{ movie.title }}
+        {{ movie.title }} |
+        <p @click="selectMovie(movie.id)">{{movie.id}}</p>
       </li>
     </ul>
   </div>
@@ -19,6 +20,12 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getMoviesFromAPI");
+  },
+  methods: {
+    selectMovie(id){
+      this.$store.commit("setSelectedMovieId", id)
+      this.$store.dispatch("getMovieDataFromAPI");
+    }
   },
   computed: {
     movies() {
