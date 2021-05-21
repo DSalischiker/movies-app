@@ -1,12 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
+import { API } from "../api";
+/* import { reject, resolve } from "core-js/fn/promise"; */
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    baseURL: "https://api.themoviedb.org/3/",
     movies: [],
+    movieIdForImages: "",
     genres: [],
     selectedMovieId: null,
     selectedMovieData: {},
@@ -15,55 +17,58 @@ const store = new Vuex.Store({
     setMovies(state, movies) {
       state.movies = movies;
     },
-    setGenres(state, genres){
+    setGenres(state, genres) {
       state.genres = genres;
     },
-    setSelectedMovieId(state, id){
+    setSelectedMovieId(state, id) {
       state.selectedMovieId = id;
     },
-    setMovieData(state, movie){
+    setMovieData(state, movie) {
       state.selectedMovieData = movie;
-    }
+    },
   },
   actions: {
-    getMoviesFromAPI({ commit, getters }) {
-      axios
-        .get(getters.getMoviesURL)
-        .then((response) => {
-          commit("setMovies", response.data.results);
-        })
-        .catch((error) => console.error(error));
+    getMoviesFromAPI({ commit }) {
+      return new Promise((resolve, reject) => {
+        API.get(`movie/popular?api_key=${process.env.VUE_APP_API_KEY}`)
+          .then((response) => {
+            commit("setMovies", response.data.results);
+            resolve(response);
+          })
+          .catch((error) => {
+            console.error(error);
+            reject(error);
+          });
+      });
     },
-    getGenresFromAPI({ commit, getters }) {
-      axios
-        .get(getters.getGenresURL)
-        .then((response) => {
-          commit("setGenres", response.data.genres);
-        })
-        .catch((error) => console.error(error));
+    getGenresFromAPI({ commit }) {
+      return new Promise((resolve, reject) => {
+        API.get(`genre/movie/list?api_key=${process.env.VUE_APP_API_KEY}`)
+          .then((response) => {
+            commit("setGenres", response.data.genres);
+            resolve(response);
+          })
+          .catch((error) => {
+            console.error(error);
+            reject(error);
+          });
+      });
     },
-    getMovieDataFromAPI({commit, getters}){
-      axios
-        .get(getters.getMovieDataURL)
-        .then((response) => {
-          commit("setMovieData", response.data);
-        })
-        .catch((error) => console.error(error));
+    getMovieDataFromAPI({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        API.get(`movie/${state.selectedMovieId}?api_key=${process.env.VUE_APP_API_KEY}`)
+          .then((response) => {
+            commit("setMovieData", response.data);
+            resolve(response);
+          })
+          .catch((error) => {
+            console.error(error);
+            reject(error);
+          });
+      });
     },
   },
   getters: {
-    getApiKey: () => {
-      return process.env.VUE_APP_API_KEY;
-    },
-    getMoviesURL: (state, getters) => {
-      return `${state.baseURL}movie/popular?api_key=${getters.getApiKey}&language=en-US&page=1`;
-    },
-    getGenresURL: (state, getters) => {
-      return `${state.baseURL}genre/movie/list?api_key=${getters.getApiKey}&language=en-US`;
-    },
-    getMovieDataURL: (state, getters) => {
-      return `${state.baseURL}movie/${state.selectedMovieId}?api_key=${getters.getApiKey}&language=en-US`;
-    }
   },
   modules: {},
 });
