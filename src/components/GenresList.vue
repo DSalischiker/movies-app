@@ -11,7 +11,7 @@
 <script>
 export default {
   name: "GenresList",
-  mounted() {
+  created() {
     this.$store.dispatch("getGenresFromAPI");
   },
   computed: {
