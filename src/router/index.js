@@ -1,8 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import MovieList from "../views/MovieList.vue";
-import Genre from "../views/Genre.vue";
-import MovieSingle from "../views/MovieSingle.vue";
 
 Vue.use(VueRouter);
 
@@ -10,17 +7,22 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: MovieList,
+    component: () =>
+      import(/* webpackChunkName: "MovieList" */ "../views/MovieList.vue"),
   },
   {
-    path: "/genre",
+    path: "/genre/:id",
     name: "Genre",
-    component: Genre,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "GenreList" */ "../views/Genre.vue"),
   },
   {
-    path: "/movie",
+    path: "/movie/:id",
     name: "MovieSingle",
-    component: MovieSingle,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "MovieSingle" */ "../views/MovieSingle.vue"),
   }
   //{
     //path: "/about",
