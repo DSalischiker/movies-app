@@ -1,16 +1,22 @@
 <template>
   <div id="app">
+    <!-- ENVOLVER TODO EN OTRO COMPONENTE PARA DEJAR LIMPIO app.vue -->
     <AppHeader />
+    <div class="app__content">
+    <GenresList/>
     <RouterView />
+    </div>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader.vue';
+import GenresList from './components/GenresList.vue';
 export default {
   name: "App",
   components: {
     AppHeader,
+    GenresList,
   },
 }
 </script>
@@ -31,6 +37,11 @@ body {
 </style>
 
 <style scoped>
+.app__content{
+  display: flex;
+  width: 100%;
+  margin-top: 10vh;
+}
 .fade-enter-active,
 .fade-leave-active {
   opacity: 1;

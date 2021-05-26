@@ -1,39 +1,45 @@
 <template>
-    <header class="header">
-        <h1 class="header__title">Movies List</h1>
-        <nav class="header__nav">
-            <RouterLink to="/" class="header__nav__link">Home</RouterLink>
-        </nav>
-    </header>
+  <header class="header">
+    <h1 class="header__title">Movies List</h1>
+    <nav class="header__nav">
+      <RouterLink to="/" class="header__nav__link">Home</RouterLink>
+    </nav>
+  </header>
 </template>
 
 <script>
 export default {
-    name: "AppHeader",
-    methods: {
-        selectView(name){
-            this.$emit("selectView", name);
-        },
+  name: "AppHeader",
+  methods: {
+    selectView(name) {
+      this.$emit("selectView", name);
     },
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #2b2b2b;
-    color: white;
-    .header__title{
-        margin-left: 2em;
+.header {
+    z-index: 1;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2b2b2b;
+  color: white;
+  .header__title {
+    margin-left: 2em;
+  }
+  .header__nav {
+    margin-right: 2em;
+    a {
+      text-decoration: none;
+      color: white;
     }
-    .header__nav{
-        margin-right: 2em;
-        a{
-            text-decoration: none;
-            color: white;
-        }
-    }
+  }
 }
 </style>
