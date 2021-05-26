@@ -1,9 +1,12 @@
 <template>
   <div class="movie__list">
-    <GenresList />
-    <ul>
-      <li class="movie__list__ul__li" v-for="(movie, $index) in movies" :key="$index">
-        <MovieCard :id="$index"/>
+    <ul class="movie__list__grid">
+      <li
+        class="movie__list__ul__li"
+        v-for="(movie, $index) in movies"
+        :key="$index"
+      >
+        <MovieCard :id="$index" />
       </li>
     </ul>
   </div>
@@ -11,12 +14,10 @@
 
 <script>
 // @ is an alias to /src
-import GenresList from "../components/GenresList.vue";
 import MovieCard from "../components/MovieCard.vue";
 export default {
   name: "MovieList",
   components: {
-    GenresList,
     MovieCard,
   },
   created() {
@@ -31,7 +32,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .movie__list__ul__li{
+.movie__list {
+  display: flex;
+  width: 100%;
+}
+.movie__list__grid {
+  margin-top: 4em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(150px, auto);
+
+  .movie__list__ul__li {
     list-style: none;
   }
+}
 </style>
