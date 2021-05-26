@@ -8,8 +8,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     movies: [],
-    movieIdForImages: "",
     genres: [],
+    selectedGenreId: null,
     selectedMovieId: null,
     selectedMovieData: {},
   },
@@ -22,6 +22,9 @@ const store = new Vuex.Store({
     },
     setSelectedMovieId(state, id) {
       state.selectedMovieId = id;
+    },
+    setSelectedGenreId(state, id){
+      state.selectedGenreId = id;
     },
     setMovieData(state, movie) {
       state.selectedMovieData = movie;
@@ -54,6 +57,12 @@ const store = new Vuex.Store({
           });
       });
     },
+    //COMPLETAR LLAMADO A API /discover enviando el id del género por params
+    /* getGenreListFromAPI({commit, state}){
+      return new Promise((resolve, reject) => {
+        API.get(``)
+      })
+    }, */
     getMovieDataFromAPI({ commit, state }) {
       return new Promise((resolve, reject) => {
         API.get(`movie/${state.selectedMovieId}?api_key=${process.env.VUE_APP_API_KEY}`)
