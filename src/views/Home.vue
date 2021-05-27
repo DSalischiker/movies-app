@@ -1,24 +1,16 @@
 <template>
-  <div class="movie__list">
-    <ul class="movie__list__grid">
-      <li
-        class="movie__list__ul__li"
-        v-for="(movie, $index) in movies"
-        :key="$index"
-      >
-        <MovieCard :id="$index" />
-      </li>
-    </ul>
+  <div class="home__container">
+  <MovieList :moviesToShow="movies"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import MovieCard from "../components/MovieCard.vue";
+import MovieList from "../components/MovieList.vue";
 export default {
-  name: "MovieList",
+  name: "Home",
   components: {
-    MovieCard,
+    MovieList,
   },
   created() {
     this.$store.dispatch("getMoviesFromAPI");
@@ -32,12 +24,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home__container{
+  width: 100%;
+}
 .movie__list {
   display: flex;
   width: 100%;
 }
 .movie__list__grid {
-  margin-top: 4em;
+  /* margin-top: 4em; */
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

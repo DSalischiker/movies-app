@@ -1,27 +1,22 @@
 <template>
   <div id="app">
     <!-- ENVOLVER TODO EN OTRO COMPONENTE PARA DEJAR LIMPIO app.vue -->
-    <AppHeader />
-    <div class="app__content">
-    <GenresList/>
-    <RouterView />
-    </div>
+    <MovieApp />
   </div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader.vue';
-import GenresList from './components/GenresList.vue';
+import MovieApp from "./components/MovieApp.vue";
 export default {
   name: "App",
   components: {
-    AppHeader,
-    GenresList,
+    MovieApp,
   },
-}
+};
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,700&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -36,19 +31,4 @@ body {
 }
 </style>
 
-<style scoped>
-.app__content{
-  display: flex;
-  width: 100%;
-  margin-top: 10vh;
-}
-.fade-enter-active,
-.fade-leave-active {
-  opacity: 1;
-  transition: all 0.5s ease-in-out;
-}
-.fade-enter,
-.fade-leave {
-  opacity: 0;
-}
-</style>
+<style scoped></style>

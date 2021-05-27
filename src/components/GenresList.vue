@@ -10,9 +10,10 @@
           name: 'Genre',
           params: { id: genre.id },
         }"
+        @click="'selectedGenre(genre.id)'"
       >
         <li class="genres__ul__li">
-          <a class="genres__ul__li__a" href="#" to="/">{{ genre.name }}</a>
+          <a class="genres__ul__li__a">{{ genre.name }}</a>
         </li>
       </RouterLink>
     </ul>
@@ -24,6 +25,12 @@ export default {
   name: "GenresList",
   created() {
     this.$store.dispatch("getGenresFromAPI");
+  },
+  methods: {
+    selectedGenre(genreId){
+      console.log("selectedGenre");
+      this.$store.commit("setSelectedGenreId", genreId);
+    }
   },
   computed: {
     genres() {
