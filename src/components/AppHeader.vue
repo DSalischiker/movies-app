@@ -29,16 +29,22 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #2b2b2b;
+  background-color: $primaryColor;
   color: white;
   .header__title {
-    margin-left: 2em;
+    margin-left: 1.5em;
+    font-size: 24px;
+    color: white;
   }
   .header__nav {
     margin-right: 2em;
     a {
       text-decoration: none;
       color: white;
+      padding: .5em 1em;
+      &:hover{
+        background-color: $primaryColorHover;
+      }
     }
   }
 }

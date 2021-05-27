@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     movies: [],
     genres: [],
     selectedGenreId: null,
+    moviesByGenre: [],
     selectedMovieId: null,
     selectedMovieData: {},
   },
@@ -20,11 +21,14 @@ const store = new Vuex.Store({
     setGenres(state, genres) {
       state.genres = genres;
     },
-    setSelectedMovieId(state, id) {
-      state.selectedMovieId = id;
-    },
     setSelectedGenreId(state, id){
       state.selectedGenreId = id;
+    },
+    setMoviesByGenre(state, movies){
+      state.moviesByGenre = movies;
+    },
+    setSelectedMovieId(state, id) {
+      state.selectedMovieId = id;
     },
     setMovieData(state, movie) {
       state.selectedMovieData = movie;
@@ -58,11 +62,23 @@ const store = new Vuex.Store({
       });
     },
     //COMPLETAR LLAMADO A API /discover enviando el id del género por params
-    /* getGenreListFromAPI({commit, state}){
+    getMoviesByGenreFromAPI({commit, state}){
       return new Promise((resolve, reject) => {
-        API.get(``)
+        API.get(`/discover/movie?api_key=${process.env.VUE_APP_API_KEY}`, {
+          params: {
+            with_genres: state.selectedGenreId,
+          }
+        })
+        .then((response) => {
+          commit("setMoviesByGenre", response.data.results);
+          resolve(response);
+        })
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        })
       })
-    }, */
+    },
     getMovieDataFromAPI({ commit, state }) {
       return new Promise((resolve, reject) => {
         API.get(`movie/${state.selectedMovieId}?api_key=${process.env.VUE_APP_API_KEY}`)

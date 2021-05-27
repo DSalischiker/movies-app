@@ -8,7 +8,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: () =>
-      import(/* webpackChunkName: "MovieList" */ "../views/MovieList.vue"),
+      import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
   },
   {
     path: "/genre/:id",
