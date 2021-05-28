@@ -14,75 +14,103 @@
       />
       <h3 class="movie-card__title truncate">{{ this.movie.title }}</h3>
       <StarRating
-      :rating="rating"
-      increment="0.1"
-      star-size="15"
-      read-only="true"
-      fixed-points="1"
-      round-start-rating="false"
-      active-color="#744081"
-      animate="true"
-      text-class="rating-text"
-      />
-      </div
+        class="stars"
+        :rating="rating"
+        :increment="SRConfig.increment"
+        :star-size="SRConfig.starSize"
+        :read-only="SRConfig.readOnly"
+        :fixed-points="SRConfig.fixedPoints"
+        :round-start-rating="SRConfig.roundStartRating"
+        :active-color="SRConfig.activeColor"
+        :animate="SRConfig.animate"
+        :text-class="SRConfig.textClass"
+        :padding="SRConfig.padding / 2"
+      /></div
   ></RouterLink>
 </template>
 
 <script>
-import StarRating from 'vue-star-rating';
+import StarRating from "vue-star-rating";
 export default {
   name: "MovieCard",
   props: ["id", "movieData"],
   components: {
     StarRating,
   },
-  created() {},
+  data() {
+    return {
+      increment: 0.1,
+      starSize: 15,
+      readOnly: true,
+      fixedPoints: 1,
+      roundStartRating: false,
+      activeColor: "#744081",
+      animate: true,
+      textClass: "rating-text",
+    };
+  },
   methods: {
     selectMovie(id) {
       this.$store.commit("setSelectedMovieId", id);
-
     },
   },
   computed: {
     movie() {
       return this.movieData;
     },
-    rating(){
-      return this.movieData.vote_average /2;
-    }
+    rating() {
+      return this.movieData.vote_average / 2;
+    },
+    SRConfig() {
+      return this.$store.getters.getStarRatingConfig;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.movie-card{
+.movie-card {
   text-decoration: none;
-
 }
-.movie-card__container{
-  margin: 0 auto;
-  max-width: 200px;
+.movie-card__container {
+  margin: 0 auto 2em auto;
+  width: 100%;
   text-align: center;
   color: #222222;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.movie-card__img {
-  border-radius: 8px;
-  width: 200px;
-  height: auto;
-}
-.truncate{
-  overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 1; /* number of lines to show */
-   -webkit-box-orient: vertical;
+
+  &:hover {
+    transform: scale(1.02);
+    transition: ease-in-out 0.1s;
+  }
 }
 
-.rating-text{
-  background-color: gold !important;
+.movie-card__title {
+  margin: 1em 0 0 0;
+  font-size: 18px;
+}
+
+.movie-card__img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+/* Chequear */
+span.rating-text {
+  background-color: gold;
+}
+.rating-text {
+  background-color: gold;
 }
 </style>

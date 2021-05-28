@@ -8,15 +8,31 @@
     <div class="single__data">
       <h1 class="single__data__title">{{ this.movieData.title }}</h1>
       <p class="single__data__subtitle">{{ this.movieData.tagline }}</p>
-      <div class="single__data__meta">
-        <p class="single__data__text rating">{{ this.movieData.vote_average }}</p>
-        <span
-          v-for="(language, $index) in this.movieData.spoken_languages"
-          :key="$index"
-          >{{ language.english_name }}</span
-        >
-        <span>{{ this.movieData.runtime }} MIN</span>
-        <span>{{ this.getReleaseYear() }}</span>
+      <div class="single__data__info">
+        <StarRating
+          class="stars"
+          :rating="rating"
+          :increment="SRConfig.increment"
+          :star-size="SRConfig.starSize"
+          :read-only="SRConfig.readOnly"
+          :fixed-points="SRConfig.fixedPoints"
+          :round-start-rating="SRConfig.roundStartRating"
+          :active-color="SRConfig.activeColor"
+          :animate="SRConfig.animate"
+          :text-class="SRConfig.textClass"
+          :padding="SRConfig.padding / 2"
+        />
+        <div class="single__data__meta">
+          <span
+            v-for="(language, $index) in this.movieData.spoken_languages"
+            :key="$index"
+            >{{ language.english_name }}</span
+          >
+          <span>|</span>
+          <span>{{ this.movieData.runtime }} MIN</span>
+          <span>|</span>
+          <span>{{ this.getReleaseYear() }}</span>
+        </div>
       </div>
       <h4>Synopsis</h4>
       <p>{{ this.movieData.overview }}</p>
@@ -31,9 +47,13 @@
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
 export default {
   name: "MovieSingle",
   props: ["id"],
+  components: {
+    StarRating,
+  },
   created() {
     this.$store.commit("setSelectedMovieId", this.movieId);
     this.$store.dispatch("getMovieDataFromAPI");
@@ -53,6 +73,12 @@ export default {
     movieData() {
       return this.$store.state.selectedMovieData;
     },
+    rating() {
+      return this.movieData.vote_average / 2;
+    },
+    SRConfig() {
+      return this.$store.getters.getStarRatingConfig;
+    },
   },
 };
 </script>
@@ -60,8 +86,8 @@ export default {
 <style lang="scss" scoped>
 .single__container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   height: 60vh;
   width: 65%;
   margin: 10vh auto 0 auto;
@@ -82,20 +108,33 @@ export default {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
+
+  .single__data__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
   }
 
   .single__data__subtitle {
-    font-size: 16px;
+    font-size: 12px;
+    margin-top: 0.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
   }
 
-  .single__data__meta{
+  .single__data__meta {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 1em;
-
-    .rating{
-
+    span {
+      color: #b8b8b8;
     }
   }
 }

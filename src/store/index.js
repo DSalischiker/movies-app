@@ -13,6 +13,17 @@ const store = new Vuex.Store({
     moviesByGenre: [],
     selectedMovieId: null,
     selectedMovieData: {},
+    starRatingConfig: {
+      increment: 0.1,
+      starSize: 13,
+      readOnly: true,
+      fixedPoints: 1,
+      roundStartRating: false,
+      activeColor: "#744081",
+      animate: true,
+      textClass: "rating-text",
+      padding: 10,
+    }
   },
   mutations: {
     setMovies(state, movies) {
@@ -94,6 +105,9 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    getStarRatingConfig: state => {
+      return state.starRatingConfig;
+    }
   },
   modules: {},
 });

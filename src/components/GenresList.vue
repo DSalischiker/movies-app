@@ -10,9 +10,10 @@
           name: 'Genre',
           params: { id: genre.id },
         }"
-        @click="'selectedGenre(genre.id)'"
+        @click="selectedGenre(genre.id)"
       >
         <li class="genres__ul__li">
+          <i class="ri-movie-2-line"></i>
           <a class="genres__ul__li__a">{{ genre.name }}</a>
         </li>
       </RouterLink>
@@ -21,16 +22,17 @@
 </template>
 
 <script>
+import "remixicon/fonts/remixicon.css";
+
 export default {
   name: "GenresList",
   created() {
     this.$store.dispatch("getGenresFromAPI");
   },
   methods: {
-    selectedGenre(genreId){
-      console.log("selectedGenre");
+    selectedGenre(genreId) {
       this.$store.commit("setSelectedGenreId", genreId);
-    }
+    },
   },
   computed: {
     genres() {
@@ -63,27 +65,32 @@ export default {
   h3 {
     color: #474747;
   }
-  .genre__link{
+  .genre__link {
     width: 100%;
     text-decoration: none;
   }
   .genres__ul__li {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5em;
     text-transform: uppercase;
     letter-spacing: 2px;
     height: 1.7rem;
     list-style: none;
     cursor: pointer;
-
     padding: 0rem 0.7rem;
+    i {
+      font-size: 12px;
+      color: $textsColor;
+    }
     &:hover {
       background-color: #cccccc;
     }
   }
-  .genres__ul__li__a{
+  .genres__ul__li__a {
     font-size: 12px;
     text-decoration: none;
     color: #474747;

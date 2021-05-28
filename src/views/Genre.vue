@@ -14,14 +14,26 @@ export default {
   },
   created() {
     this.setGenreInState();
+    this.getGenreName();
+  },
+  data() {
+    return {
+      genreName: "",
+    };
   },
   watch: {
-    '$route': 'setGenreInState',
+    $route: "setGenreInState",
   },
   methods: {
-    setGenreInState(){
+    setGenreInState() {
       this.$store.commit("setSelectedGenreId", this.id);
       this.$store.dispatch("getMoviesByGenreFromAPI");
+    },
+    getGenreName() {
+      this.genreName = this.$store.state.genres.filter(
+        (genre) => genre.id == this.id
+      ).name;
+      return;
     },
   },
   computed: {
@@ -36,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.genre__container{
+.genre__container {
   width: 100%;
 }
 </style>
