@@ -37,7 +37,6 @@ export default {
 .movie__list {
   display: flex;
   width: 100%;
-
 }
 .movie__list__grid {
   margin: 10vh auto 0 auto;

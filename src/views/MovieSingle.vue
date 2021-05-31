@@ -146,6 +146,11 @@ export default {
       margin: 0;
       padding: 0;
       width: 80%;
+
+      .rating_text {
+        font-size: 8px !important;
+        background-color:chartreuse ;
+      }
     }
 
     .single__data__subtitle {
@@ -168,7 +173,6 @@ export default {
     .single__data__synopsis {
       margin: 0;
       width: 80%;
-
     }
 
     .single__data__genre__ul {
@@ -183,15 +187,18 @@ export default {
       .single__data__genre__ul__li {
         list-style-type: none;
         margin: 0;
+        background-color: white;
+        padding: 0.5em 1em;
+        border-radius: 15px;
+        color: white;
         font-size: 14px;
         font-weight: 500;
         &:hover {
-          transform: scale(1.1);
-          i,
-          li {
-            color: $primaryColor;
+          background-color: $primaryColorHover;
+          /* transform: scale(1.1); */
+          * {
+            color: white;
           }
-          transition: all ease-in-out 0.1s;
         }
         i {
           font-size: 12px;
@@ -203,6 +210,7 @@ export default {
       }
     }
   }
+
   @media (max-width: $breakpointLaptop) {
     .single__data__info {
       flex-direction: column;
@@ -221,7 +229,6 @@ export default {
     .single__data {
       margin: 1em 0 0 0;
     }
-
   }
 }
 </style>

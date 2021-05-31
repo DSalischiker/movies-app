@@ -1,5 +1,5 @@
 <template>
-  <div class="genre__container">
+  <div class="genre__container" >
     <MovieList :moviesToShow="moviesByGenre" />
   </div>
 </template>

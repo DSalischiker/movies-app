@@ -1,7 +1,7 @@
 <template>
 <!-- <div> -->
   <header class="header">
-    <h1 class="header__title">Movies List</h1>
+    <h1 class="header__title">Movies App</h1>
     <nav class="header__nav">
       <RouterLink to="/" class="header__nav__link">Home</RouterLink>
     </nav>

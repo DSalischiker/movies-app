@@ -1,7 +1,7 @@
 <template>
   <div class="genres__container">
     <ul class="genres__ul">
-      <h3>Genres</h3>
+      <h3 class="genres__ul__title">Genres</h3>
       <RouterLink
         v-for="(genre, $index) in genres"
         :key="$index"
@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .genres__container {
-  background-color: #dbdbdb;
+  background-color: $sideBarColor;
   width: 20%;
   min-width: 250px;
   height: 90vh;
@@ -62,8 +62,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  h3 {
-    color: #474747;
+  .genres__ul__title {
+    color: $textsColor;
   }
   .genre__link {
     width: 100%;
@@ -87,13 +87,16 @@ export default {
       color: $textsColor;
     }
     &:hover {
-      background-color: #cccccc;
+      background-color: $primaryColorHover;
+      .genres__ul__li__a, i{
+        color: white;
+      }
     }
   }
   .genres__ul__li__a {
     font-size: 12px;
     text-decoration: none;
-    color: #474747;
+    color: $textsColor;
   }
 }
 </style>

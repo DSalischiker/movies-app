@@ -21,7 +21,7 @@ const store = new Vuex.Store({
       roundStartRating: false,
       activeColor: "#744081",
       animate: true,
-      textClass: "rating-text",
+      textClass: 'rating_text',
       padding: 10,
     }
   },

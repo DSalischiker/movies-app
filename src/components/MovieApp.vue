@@ -5,11 +5,10 @@
 
     <div class="app__content">
       <GenresList />
-      <transition name="fade" >
-      <RouterView />
+      <transition name="fade">
+        <RouterView />
       </transition>
     </div>
-
   </div>
 </template>
 
@@ -37,13 +36,20 @@ body {
 }
 body {
   font-family: sans-serif;
-  h1,h2,h3,h4,h5,h6{
-      font-family: $titlesFontFamily;
-      color: $primaryColor;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $titlesFontFamily;
+    color: $primaryColor;
   }
-  p, span, li {
-      font-family: $textsFontFamily;
-      color: $textsColor;
+  p,
+  span,
+  li {
+    font-family: $textsFontFamily;
+    color: $textsColor;
   }
 }
 </style>
