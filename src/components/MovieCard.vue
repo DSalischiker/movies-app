@@ -99,7 +99,7 @@ export default {
   border-radius: 8px;
   width: 100%;
   height: auto;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(105, 100, 100, 0.35) 0px 5px 15px;
 }
 .truncate {
   overflow: hidden;

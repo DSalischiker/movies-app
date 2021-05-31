@@ -35,11 +35,24 @@
         </div>
       </div>
       <h4>Synopsis</h4>
-      <p>{{ this.movieData.overview }}</p>
+      <p class="single__data__synopsis">{{ this.movieData.overview }}</p>
       <h4>Genres</h4>
-      <ul>
-        <li v-for="(genre, $index) in this.movieData.genres" :key="$index">
-          {{ genre.name }}
+      <ul class="single__data__genre__ul">
+        <li
+          class="single__data__genre__ul__li"
+          v-for="(genre, $index) in this.movieData.genres"
+          :key="$index"
+        >
+          <RouterLink
+            class="single__data__genre__ul__li__link"
+            :to="{
+              name: 'Genre',
+              params: { id: genre.id },
+            }"
+          >
+            <i class="ri-movie-2-line"></i>
+            {{ genre.name }}
+          </RouterLink>
         </li>
       </ul>
     </div>
@@ -48,6 +61,8 @@
 
 <script>
 import StarRating from "vue-star-rating";
+import "remixicon/fonts/remixicon.css";
+
 export default {
   name: "MovieSingle",
   props: ["id"],
@@ -91,51 +106,122 @@ export default {
   height: 60vh;
   width: 65%;
   margin: 10vh auto 0 auto;
+
   .movie-card__img {
+    width: 30%;
     border-radius: 8px;
-    height: 90%;
+    height: auto;
+    box-shadow: $cardShadow;
   }
-}
-.single__data {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  margin-left: 2em;
-
-  .single__data__title {
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
-  }
-
-  .single__data__info {
+  .single__data {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-  }
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    margin-left: 2em;
 
-  .single__data__subtitle {
-    font-size: 12px;
-    margin-top: 0.2em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-  }
-
-  .single__data__meta {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1em;
-    span {
-      color: #b8b8b8;
+    h4 {
+      margin: 1em 0 0.5em 0;
+      font-size: 16px;
+      font-weight: 500;
     }
+    p {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      line-height: 1.3em;
+    }
+    .single__data__title {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+    }
+
+    .single__data__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      width: 80%;
+    }
+
+    .single__data__subtitle {
+      font-size: 12px;
+      margin-top: 0.2em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .single__data__meta {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1em;
+      span {
+        color: #b8b8b8;
+      }
+    }
+    .single__data__synopsis {
+      margin: 0;
+      width: 80%;
+
+    }
+
+    .single__data__genre__ul {
+      display: flex;
+      gap: 1em;
+      margin: 0;
+      padding: 0;
+      justify-content: flex-start;
+      align-items: center;
+      text-decoration: none;
+      padding-bottom: 2em;
+      .single__data__genre__ul__li {
+        list-style-type: none;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        &:hover {
+          transform: scale(1.1);
+          i,
+          li {
+            color: $primaryColor;
+          }
+          transition: all ease-in-out 0.1s;
+        }
+        i {
+          font-size: 12px;
+          color: $textsColor;
+        }
+        .single__data__genre__ul__li__link {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  @media (max-width: $breakpointLaptop) {
+    .single__data__info {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start !important;
+      gap: 0.5em;
+    }
+  }
+  @media (max-width: $breakpointTablet) {
+    flex-direction: column;
+    .movie-card__img {
+      min-width: 50%;
+      height: auto;
+    }
+
+    .single__data {
+      margin: 1em 0 0 0;
+    }
+
   }
 }
 </style>
