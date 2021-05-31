@@ -53,13 +53,13 @@ export default {
     list-style: none;
   }
 
-  @media(max-width: 1368px){
+  @media(max-width: $breakpointLaptop){
     grid-template-columns: repeat(4, 1fr);
   }
-  @media(max-width: 980px){
+  @media(max-width: $breakpointTablet){
     grid-template-columns: repeat(2, 1fr);
   }
-  @media(max-width: 680px){
+  @media(max-width: $breakpointMobile){
     grid-template-columns: repeat(1, 1fr);
   }
 }
