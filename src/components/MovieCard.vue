@@ -73,7 +73,7 @@ export default {
   text-decoration: none;
 }
 .movie-card__container {
-  margin: 0 auto 2em auto;
+  margin: 0 auto 1em auto;
   width: 100%;
   text-align: center;
   color: #222222;
@@ -90,10 +90,12 @@ export default {
 
 .movie-card__title {
   margin: 1em 0 0 0;
-  font-size: 18px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .movie-card__img {
+  object-fit:cover;
   border-radius: 8px;
   width: 100%;
   height: auto;
@@ -107,6 +109,9 @@ export default {
   -webkit-box-orient: vertical;
 }
 /* Chequear */
+.stars{
+  margin-top: .3em;
+}
 span.rating-text {
   background-color: gold;
 }
