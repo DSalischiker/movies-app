@@ -24,36 +24,39 @@
         />
         <div class="single__data__meta">
           <span
+            class="single__data__meta__item"
             v-for="(language, $index) in this.movieData.spoken_languages"
             :key="$index"
             >{{ language.english_name }}</span
           >
-          <span>|</span>
-          <span>{{ this.movieData.runtime }} MIN</span>
-          <span>|</span>
-          <span>{{ this.getReleaseYear() }}</span>
+          <span class="single__data__meta__item">|</span>
+          <span class="single__data__meta__item"
+            >{{ this.movieData.runtime }} MIN</span
+          >
+          <span class="single__data__meta__item">|</span>
+          <span class="single__data__meta__item">{{
+            this.getReleaseYear()
+          }}</span>
         </div>
       </div>
-      <h4>Synopsis</h4>
+      <h4 class="single__data__titles">Synopsis</h4>
       <p class="single__data__synopsis">{{ this.movieData.overview }}</p>
-      <h4>Genres</h4>
+      <h4 class="single__data__titles">Genres</h4>
       <ul class="single__data__genre__ul">
-        <li
-          class="single__data__genre__ul__li"
+        <RouterLink
+          class="single__data__genre__ul__li__link"
           v-for="(genre, $index) in this.movieData.genres"
           :key="$index"
+          :to="{
+            name: 'Genre',
+            params: { id: genre.id },
+          }"
         >
-          <RouterLink
-            class="single__data__genre__ul__li__link"
-            :to="{
-              name: 'Genre',
-              params: { id: genre.id },
-            }"
-          >
+          <li class="single__data__genre__ul__li">
             <i class="ri-movie-2-line"></i>
             {{ genre.name }}
-          </RouterLink>
-        </li>
+          </li>
+        </RouterLink>
       </ul>
     </div>
   </div>
@@ -120,12 +123,13 @@ export default {
     height: 100%;
     margin-left: 2em;
 
-    h4 {
+    .single__data__titles {
       margin: 1em 0 0.5em 0;
       font-size: 16px;
       font-weight: 500;
     }
-    p {
+
+    .single__data__synopsis {
       font-size: 14px;
       letter-spacing: 0.5px;
       line-height: 1.3em;
@@ -147,9 +151,10 @@ export default {
       padding: 0;
       width: 80%;
 
+      /* No funciona */
       .rating_text {
         font-size: 8px !important;
-        background-color:chartreuse ;
+        background-color: chartreuse;
       }
     }
 
@@ -166,7 +171,7 @@ export default {
       justify-content: flex-end;
       align-items: center;
       gap: 1em;
-      span {
+      .single__data__meta__item {
         color: #b8b8b8;
       }
     }
@@ -184,28 +189,32 @@ export default {
       align-items: center;
       text-decoration: none;
       padding-bottom: 2em;
-      .single__data__genre__ul__li {
-        list-style-type: none;
-        margin: 0;
-        background-color: white;
-        padding: 0.5em 1em;
-        border-radius: 15px;
-        color: white;
-        font-size: 14px;
-        font-weight: 500;
-        &:hover {
-          background-color: $primaryColorHover;
-          /* transform: scale(1.1); */
-          * {
-            color: white;
+      .single__data__genre__ul__li__link {
+        text-decoration: none;
+
+        .single__data__genre__ul__li {
+          list-style-type: none;
+          margin: 0;
+          background-color: white;
+          padding: 0.5em 1em;
+          color: $primaryColor;
+          font-size: 14px;
+          font-weight: 500;
+
+          .ri-movie-2-line{
+            margin-right: .5em;
+            font-size: 12px;
           }
-        }
-        i {
-          font-size: 12px;
-          color: $textsColor;
-        }
-        .single__data__genre__ul__li__link {
-          text-decoration: none;
+
+          &:hover {
+            background-color: $primaryColorHover;
+              color: white;
+              .ri-movie-2-line{
+                color: white;
+              }
+          }
+
+
         }
       }
     }
