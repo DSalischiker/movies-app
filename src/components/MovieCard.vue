@@ -59,6 +59,7 @@ export default {
       return this.movieData;
     },
     rating() {
+      //Esto puede ser un getter en store
       return this.movieData.vote_average / 2;
     },
     SRConfig() {
@@ -84,7 +85,7 @@ export default {
 
   &:hover {
     transform: scale(1.02);
-    transition: ease-in-out 0.1s;
+    transition: all ease-in-out 0.1s;
   }
 }
 
@@ -108,14 +109,9 @@ export default {
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
-/* Chequear */
-.stars{
-  margin-top: .3em;
-}
-span.rating-text {
-  background-color: gold;
-}
-.rating-text {
+</style>
+<style lang="scss">
+.rating_text {
   background-color: gold;
 }
 </style>

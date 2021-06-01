@@ -1,7 +1,7 @@
 <template>
   <div class="home__container">
   <MovieList v-if="!loadingState" :moviesToShow="movies"/>
-  <span v-else>Loading...</span>
+  <span class="loading" v-else>Loading...</span>
   </div>
 </template>
 
