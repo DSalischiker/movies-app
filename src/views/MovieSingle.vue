@@ -106,7 +106,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 60vh;
+  height: 100%;
   width: 65%;
   margin: 10vh auto 0 auto;
 
@@ -213,8 +213,6 @@ export default {
                 color: white;
               }
           }
-
-
         }
       }
     }
