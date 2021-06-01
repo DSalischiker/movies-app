@@ -1,13 +1,13 @@
 <template>
   <div class="movie__list">
     <ul v-if="moviesToShow != []" class="movie__list__grid">
-        <MovieCard
+      <MovieCard
         class="movie__list__ul__li"
         v-for="(movie, $index) in movies"
         :key="$index"
         :id="$index"
-        :movieData="movie" />
-
+        :movieData="movie"
+      />
     </ul>
   </div>
 </template>
@@ -18,10 +18,11 @@ import MovieCard from "../components/MovieCard.vue";
 export default {
   name: "MovieList",
   props: {
-      moviesToShow: {
-          type: Array,
-          required: true,
-      }},
+    moviesToShow: {
+      type: Array,
+      required: true,
+    },
+  },
   components: {
     MovieCard,
   },
@@ -52,13 +53,13 @@ export default {
     list-style: none;
   }
 
-  @media(max-width: $breakpointLaptop){
+  @media (max-width: $breakpointLaptop) {
     grid-template-columns: repeat(4, 1fr);
   }
-  @media(max-width: $breakpointTablet){
+  @media (max-width: $breakpointTablet) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media(max-width: $breakpointMobile){
+  @media (max-width: $breakpointMobile) {
     grid-template-columns: repeat(1, 1fr);
   }
 }
