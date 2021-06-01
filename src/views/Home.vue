@@ -1,6 +1,7 @@
 <template>
   <div class="home__container">
-  <MovieList :moviesToShow="movies"/>
+  <MovieList v-if="!loadingState" :moviesToShow="movies"/>
+  <span v-else>Loading...</span>
   </div>
 </template>
 
@@ -19,6 +20,9 @@ export default {
     movies() {
       return this.$store.state.movies;
     },
+    loadingState(){
+      return this.$store.state.isLoading;
+    }
   },
 };
 </script>
@@ -26,14 +30,17 @@ export default {
 <style lang="scss" scoped>
 .home__container{
   width: 100%;
+  height: 100%;
 }
 .movie__list {
   display: flex;
   width: 100%;
+  height: 100%;
 }
 .movie__list__grid {
   /* margin-top: 4em; */
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em;

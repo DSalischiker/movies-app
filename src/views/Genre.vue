@@ -1,6 +1,7 @@
 <template>
   <div class="genre__container" >
-    <MovieList :moviesToShow="moviesByGenre" />
+    <MovieList v-if="!loadingState" :moviesToShow="moviesByGenre" />
+      <span v-else>Loading...</span>
   </div>
 </template>
 
@@ -43,6 +44,9 @@ export default {
     moviesByGenre() {
       return this.$store.state.moviesByGenre;
     },
+    loadingState(){
+      return this.$store.state.isLoading;
+    }
   },
 };
 </script>
