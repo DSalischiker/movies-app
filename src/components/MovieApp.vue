@@ -5,9 +5,12 @@
 
     <div class="app__content">
       <GenresList />
-      <transition name="fade">
-        <RouterView />
-      </transition>
+      <div class="app__content__container">
+        <transition name="fade">
+          <RouterView />
+        </transition>
+        <AppFooter />
+      </div>
     </div>
   </div>
 </template>
@@ -15,11 +18,13 @@
 <script>
 import AppHeader from "./AppHeader.vue";
 import GenresList from "./GenresList.vue";
+import AppFooter from "./AppFooter.vue";
 export default {
   name: "MovieApp",
   components: {
     AppHeader,
     GenresList,
+    AppFooter,
   },
 };
 </script>
@@ -58,6 +63,10 @@ body {
   display: flex;
   width: 100%;
   margin-top: 10vh;
+}
+.app__content__container{
+  display: flex;
+  flex-direction: column;
 }
 .fade-enter-active,
 .fade-leave-active {
