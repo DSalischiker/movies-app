@@ -7,7 +7,7 @@
       <GenresList />
       <div class="app__content__container">
         <transition name="fade">
-          <RouterView />
+          <RouterView :key="$route.fullPath"/>
         </transition>
         <AppFooter />
       </div>

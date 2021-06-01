@@ -1,7 +1,7 @@
 <template>
   <div class="genre__container" >
     <MovieList v-if="!loadingState" :moviesToShow="moviesByGenre" />
-      <span v-else>Loading...</span>
+      <span class="loading"  v-else>Loading...</span>
   </div>
 </template>
 
@@ -22,13 +22,13 @@ export default {
       genreName: "",
     };
   },
-  watch: {
+  /* watch: {
     $route: "setGenreInState",
-  },
+  }, */
   methods: {
     setGenreInState() {
-      this.$store.commit("setSelectedGenreId", this.id);
-      this.$store.dispatch("getMoviesByGenreFromAPI");
+      //this.$store.commit("setSelectedGenreId", this.id);
+      this.$store.dispatch("getMoviesByGenreFromAPI", this.$route.params.id);
     },
     getGenreName() {
       this.genreName = this.$store.state.genres.filter(

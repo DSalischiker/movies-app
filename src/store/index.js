@@ -22,7 +22,7 @@ const store = new Vuex.Store({
       roundStartRating: false,
       activeColor: "#744081",
       animate: true,
-      textClass: 'rating_text',
+      textClass: "rating_text",
       padding: 10,
     }
   },
@@ -79,13 +79,12 @@ const store = new Vuex.Store({
           });
       });
     },
-    //COMPLETAR LLAMADO A API /discover enviando el id del género por params
-    getMoviesByGenreFromAPI({commit, state}){
+    getMoviesByGenreFromAPI({commit}, id){
       return new Promise((resolve, reject) => {
         commit("setLoadingState", true);
         API.get(`/discover/movie?api_key=${process.env.VUE_APP_API_KEY}`, {
           params: {
-            with_genres: state.selectedGenreId,
+            with_genres: id,
           }
         })
         .then((response) => {
