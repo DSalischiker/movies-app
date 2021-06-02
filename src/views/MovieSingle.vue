@@ -61,19 +61,21 @@
         </ul>
       </div>
     </div>
-    <span v-else>Loading...</span>
+    <Loading v-else />
   </div>
 </template>
 
 <script>
 import StarRating from "vue-star-rating";
 import "remixicon/fonts/remixicon.css";
+import Loading from "../components/Loading.vue";
 
 export default {
   name: "MovieSingle",
   props: ["id"],
   components: {
     StarRating,
+    Loading,
   },
   created() {
     this.$store.commit("setSelectedMovieId", this.movieId);

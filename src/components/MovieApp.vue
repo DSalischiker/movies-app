@@ -65,6 +65,7 @@ body {
   margin-top: 10vh;
 }
 .app__content__container{
+  width: 100%;
   display: flex;
   flex-direction: column;
 }

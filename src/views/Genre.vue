@@ -1,17 +1,19 @@
 <template>
   <div class="genre__container" >
     <MovieList v-if="!loadingState" :moviesToShow="moviesByGenre" />
-      <span class="loading"  v-else>Loading...</span>
+      <Loading v-else />
   </div>
 </template>
 
 <script>
 import MovieList from "../components/MovieList.vue";
+import Loading from "../components/Loading.vue";
 export default {
   name: "Genre",
   props: ["id"],
   components: {
     MovieList,
+    Loading,
   },
   created() {
     this.setGenreInState();
@@ -50,5 +52,7 @@ export default {
 <style lang="scss" scoped>
 .genre__container {
   width: 100%;
+  height: 100%;
+  display: flex;
 }
 </style>

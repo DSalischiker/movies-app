@@ -1,17 +1,19 @@
 <template>
   <div class="home__container">
-  <MovieList v-if="!loadingState" :moviesToShow="movies"/>
-  <span class="loading" v-else>Loading...</span>
+    <MovieList v-if="!loadingState" :moviesToShow="movies" />
+    <Loading v-else />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import MovieList from "../components/MovieList.vue";
+import Loading from "../components/Loading.vue";
 export default {
   name: "Home",
   components: {
     MovieList,
+    Loading,
   },
   created() {
     this.$store.dispatch("getMoviesFromAPI");
@@ -20,15 +22,15 @@ export default {
     movies() {
       return this.$store.state.movies;
     },
-    loadingState(){
+    loadingState() {
       return this.$store.state.isLoading;
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.home__container{
+.home__container {
   width: 100%;
   height: 100%;
 }
