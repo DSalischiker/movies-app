@@ -7,11 +7,13 @@
     }"
   >
     <div class="movie-card__container" @click="selectMovie(movie.id)">
-      <img
-        class="movie-card__img"
-        :src="`https://image.tmdb.org/t/p/w500${this.movie.poster_path}`"
-        alt=""
-      />
+      <div class="movie-card__image__container">
+        <img
+          class="movie-card__img"
+          :src="`https://image.tmdb.org/t/p/w500${this.movie.poster_path}`"
+          alt=""
+        />
+      </div>
       <h3 class="movie-card__title truncate">{{ this.movie.title }}</h3>
       <StarRating
         class="stars"
@@ -88,6 +90,11 @@ export default {
     transition: all ease-in-out 0.1s;
   }
 }
+.movie-card__image__container{
+  border-radius: 8px;
+  height: 325px;
+  box-shadow: rgba(105, 100, 100, 0.35) 0px 5px 15px;
+}
 
 .movie-card__title {
   margin: 1em 0 0 0;
@@ -96,11 +103,10 @@ export default {
 }
 
 .movie-card__img {
-  object-fit:cover;
   border-radius: 8px;
   width: 100%;
-  height: auto;
-  box-shadow: rgba(105, 100, 100, 0.35) 0px 5px 15px;
+  height: 100%;
+  object-fit: cover;
 }
 .truncate {
   overflow: hidden;
@@ -111,8 +117,8 @@ export default {
 }
 </style>
 <style lang="scss">
-.stars{
-  margin-top: .2em;
+.stars {
+  margin-top: 0.2em;
 }
 .rating_text {
   font-size: 10px;
