@@ -22,12 +22,8 @@ export default {
       genreName: "",
     };
   },
-  /* watch: {
-    $route: "setGenreInState",
-  }, */
   methods: {
     setGenreInState() {
-      //this.$store.commit("setSelectedGenreId", this.id);
       this.$store.dispatch("getMoviesByGenreFromAPI", this.$route.params.id);
     },
     getGenreName() {
