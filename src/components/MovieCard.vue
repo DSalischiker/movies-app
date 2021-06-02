@@ -111,7 +111,14 @@ export default {
 }
 </style>
 <style lang="scss">
+.stars{
+  margin-top: .2em;
+}
 .rating_text {
-  background-color: gold;
+  font-size: 10px;
+  color: $primaryColor;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 8px;
 }
 </style>
