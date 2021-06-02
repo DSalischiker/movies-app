@@ -10,9 +10,8 @@
           name: 'Genre',
           params: { id: genre.id },
         }"
-        @click="selectedGenre(genre.id)"
       >
-        <li class="genres__ul__li">
+        <li :class="[{ selected: isSelected(genre.id) }]" class="genres__ul__li">
           <i class="ri-movie-2-line"></i>
           <a class="genres__ul__li__a">{{ genre.name }}</a>
         </li>
@@ -33,11 +32,16 @@ export default {
     selectedGenre(genreId) {
       this.$store.commit("setSelectedGenreId", genreId);
     },
+    isSelected(id) {
+      if (id == this.$route.params.id) {
+        return true;
+      }
+    },
   },
   computed: {
     genres() {
       return this.$store.state.genres;
-    },
+    }
   },
 };
 </script>
@@ -69,6 +73,10 @@ export default {
     width: 100%;
     text-decoration: none;
   }
+  .selected{
+  background-color: $primaryColor;
+  *{color: white !important;}
+}
   .genres__ul__li {
     width: 100%;
     display: flex;
@@ -88,7 +96,8 @@ export default {
     }
     &:hover {
       background-color: $primaryColorHover;
-      .genres__ul__li__a, i{
+      .genres__ul__li__a,
+      i {
         color: white;
       }
     }
@@ -99,4 +108,6 @@ export default {
     color: $textsColor;
   }
 }
+
+
 </style>
