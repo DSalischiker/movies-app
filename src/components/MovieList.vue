@@ -1,19 +1,20 @@
 <template>
   <div class="movie__list">
     <div class="movie__list__buttons__container">
-      <button class="button" @click="sortByRating">
+      <button class="button" :class="{selected: this.sortRating}" @click="sortByRating">
         <i class="ri-star-line"></i>
         Rating
       </button>
-      <button class="button" @click="sortByPremiere">
+      <button class="button" :class="{selected: this.sortLaunch}" @click="sortByPremiere">
         <i class="ri-calendar-line"></i>
         Lanzamiento
       </button>
       <button class="button" @click="reverseOrder">
-        <i class="ri-arrow-up-line"></i>
-        <i class="ri-arrow-down-line"></i>
+        <i :class="{selected: this.order}" class="ri-arrow-up-line"></i>
+        <i :class="{selected: !this.order}" class="ri-arrow-down-line"></i>
       </button>
     </div>
+    <span>Order by: {{this.selectedFilter ? this.selectedFilter : "none"}}, {{this.getOrderString() ? this.getOrderString() : ""}}</span>
     <ul v-if="moviesToShow != []" class="movie__list__grid">
       <MovieCard
         class="movie__list__ul__li"
@@ -42,40 +43,56 @@ export default {
   components: {
     MovieCard,
   },
+  data(){
+    return {
+      selectedFilter: 'none',
+      sortRating: false,
+      sortLaunch: false,
+      order: null, //false ==> ascendent, true ==> descendent
+    }
+  },
   methods: {
     sortByRating() {
+      this.selectedFilter = "Rating";
+      this.sortRating = !this.sortRating;
+      this.sortLaunch = false;
       this.movies.sort((a, b) => b.vote_average - a.vote_average);
     },
-    //REVISAR
-    /* sortByPremiere() {
+    sortByPremiere() {
+      this.selectedFilter = "Launch Year";
+      this.sortLaunch = !this.sortLaunch;
+      this.sortRating = false;
       this.movies.sort(
         (a, b) => {
-          if (this.getReleaseYear(b.release_date) - this.getReleaseYear(a.release_date)) {
+          if (this.getReleaseYear(a.release_date) > this.getReleaseYear(b.release_date)) {
             return -1;
-          }else if(this.getReleaseYear(b.release_date) + this.getReleaseYear(a.release_date)){
+          }else if(this.getReleaseYear(a.release_date) < this.getReleaseYear(b.release_date)){
             return 1;
           }
           return 0;
         }
-
       );
-    }, */
+    },
     getReleaseYear(releaseDate) {
       const releaseYear = releaseDate.substring(0, 4);
       return releaseYear;
     },
     reverseOrder(){
+      this.order = !this.order;
       return this.movies.reverse();
     },
+    getOrderString(){
+      if (this.order) {
+        return "ascendant";
+      }else{
+        return "descendant";
+      }
+    }
   },
   computed: {
     movies() {
       return this.moviesToShow;
     },
-    /* moviesByRating() {
-      return this.movies.sort((a, b) => a.vote_average + b.vote_average);
-
-    }, */
   },
 };
 </script>
@@ -106,9 +123,21 @@ export default {
     letter-spacing: 2px;
     padding: 0.5em 1em;
     border-bottom: 2px solid white;
+
+    &.selected{
+      border-bottom: 2px solid $primaryColor;
+    }
+
     &:hover {
       background-color: $primaryColorHover;
       color: white;
+    }
+
+    &:last-of-type{
+      color: $secondaryText;
+      i.selected{
+        color: $primaryColor !important;
+      }
     }
   }
 }
