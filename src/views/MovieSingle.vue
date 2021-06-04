@@ -114,6 +114,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/mixins.scss';
 .single__container {
   display: flex;
   justify-content: flex-start;
@@ -128,10 +129,7 @@ export default {
     align-items: flex-start;
 
     .movie-card__img {
-      width: 30%;
-      border-radius: $movieCardBorder;
-      height: auto;
-      box-shadow: $cardShadow;
+      @include movieCardImage(30%, auto, $cardShadow,  $movieCardBorder);
     }
     .single__data {
       display: flex;

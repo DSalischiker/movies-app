@@ -72,6 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/mixins.scss';
 .movie-card {
   text-decoration: none;
 }
@@ -91,9 +92,7 @@ export default {
   }
 }
 .movie-card__image__container{
-  border-radius: $movieCardBorder;
-  height: 325px;
-  box-shadow: rgba(105, 100, 100, 0.35) 0px 5px 15px;
+  @include movieCardImage(100%, 325px, $cardShadow, $movieCardBorder);
 }
 
 .movie-card__title {
