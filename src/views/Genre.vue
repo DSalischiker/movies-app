@@ -1,6 +1,6 @@
 <template>
   <div class="genre__container" >
-    <MovieList v-if="!loadingState" :moviesToShow="moviesByGenre" />
+    <MovieList v-if="!loadingState" :moviesToShow="moviesByGenre" :genreName="this.getGenreName()"/>
       <Loading v-else />
   </div>
 </template>
@@ -29,10 +29,8 @@ export default {
       this.$store.dispatch("getMoviesByGenreFromAPI", this.$route.params.id);
     },
     getGenreName() {
-      this.genreName = this.$store.state.genres.filter(
-        (genre) => genre.id == this.id
-      ).name;
-      return;
+      this.genreName = this.$store.state.genres.filter((genre) => genre.id == this.id)[0].name;
+      return this.genreName;
     },
   },
   computed: {
