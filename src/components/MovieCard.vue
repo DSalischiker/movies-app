@@ -33,6 +33,7 @@
 
 <script>
 import StarRating from "vue-star-rating";
+import {mapMutations, mapGetters} from 'vuex';
 export default {
   name: "MovieCard",
   props: ["id", "movieData"],
@@ -51,11 +52,10 @@ export default {
       textClass: "rating-text",
     };
   },
-  methods: {
-    selectMovie(id) {
-      this.$store.commit("setSelectedMovieId", id);
-    },
-  },
+  methods:
+  mapMutations({
+    selectMovie: "setSelectedMovieId"
+  }),
   computed: {
     movie() {
       return this.movieData;
@@ -64,9 +64,9 @@ export default {
       //Esto puede ser un getter en store
       return this.movieData.vote_average / 2;
     },
-    SRConfig() {
-      return this.$store.getters.getStarRatingConfig;
-    },
+    ...mapGetters({
+      SRConfig: "getStarRatingConfig"
+    }),
   },
 };
 </script>

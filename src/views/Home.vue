@@ -9,6 +9,8 @@
 // @ is an alias to /src
 import MovieList from "../components/MovieList.vue";
 import Loading from "../components/Loading.vue";
+import {mapState, mapActions} from 'vuex';
+
 export default {
   name: "Home",
   components: {
@@ -16,16 +18,16 @@ export default {
     Loading,
   },
   created() {
-    this.$store.dispatch("getMoviesFromAPI");
+    this.getMoviesFromAPI();
   },
-  computed: {
-    movies() {
-      return this.$store.state.movies;
-    },
-    loadingState() {
-      return this.$store.state.isLoading;
-    },
-  },
+  methods: mapActions({
+    getMoviesFromAPI: "getMoviesFromAPI"
+  }),
+  computed:
+  mapState({
+    movies: 'movies',
+    loadingState: 'isLoading',
+  })
 };
 </script>
 

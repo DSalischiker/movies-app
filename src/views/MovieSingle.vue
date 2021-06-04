@@ -32,7 +32,7 @@
             >
             <span class="single__data__meta__item">|</span>
             <span class="single__data__meta__item"
-              >{{ this.movieData.runtime }} MIN</span
+              >{{ this.movieData.runtime }}min</span
             >
             <span class="single__data__meta__item">|</span>
             <span class="single__data__meta__item">{{
@@ -69,7 +69,7 @@
 import StarRating from "vue-star-rating";
 import "remixicon/fonts/remixicon.css";
 import Loading from "../components/Loading.vue";
-
+import { mapState,  mapActions , mapMutations, mapGetters } from "vuex";
 export default {
   name: "MovieSingle",
   props: ["id"],
@@ -78,33 +78,37 @@ export default {
     Loading,
   },
   created() {
-    this.$store.commit("setSelectedMovieId", this.movieId);
-    this.$store.dispatch("getMovieDataFromAPI");
+    this.setSelectedMovieId(this.movieId);
+    this.getMovieDataFromAPI();
   },
   methods: {
-    getReleaseYear() {
-      if (this.movieData.release_date) {
-        const releaseYear = this.movieData.release_date.substring(0, 4);
-        return releaseYear;
-      }
-    },
+    ...mapMutations({
+    setSelectedMovieId: "setSelectedMovieId",
+  }),
+  ...mapActions({
+    getMovieDataFromAPI: "getMovieDataFromAPI",
+  }),
+  getReleaseYear() {
+    if (this.movieData.release_date) {
+      const releaseYear = this.movieData.release_date.substring(0, 4);
+      return releaseYear;
+    }
+  },
   },
   computed: {
     movieId() {
       return this.$route.params.id;
     },
-    movieData() {
-      return this.$store.state.selectedMovieData;
-    },
+    ...mapState({
+      movieData: "selectedMovieData",
+      loadingState: 'isLoading',
+    }),
     rating() {
       return this.movieData.vote_average / 2;
     },
-    SRConfig() {
-      return this.$store.getters.getStarRatingConfig;
-    },
-    loadingState() {
-      return this.$store.state.isLoading;
-    },
+    ...mapGetters({
+      SRConfig: "getStarRatingConfig",
+    })
   },
 };
 </script>
@@ -118,138 +122,138 @@ export default {
   width: 65%;
   margin: 10vh auto 0 auto;
 
-.single__container__movie{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  .movie-card__img {
-    width: 30%;
-    border-radius: $movieCardBorder;
-    height: auto;
-    box-shadow: $cardShadow;
-  }
-  .single__data {
+  .single__container__movie {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100%;
-    margin-left: 2em;
+    justify-content: center;
+    align-items: flex-start;
 
-    .single__data__title {
-      font-size: $h2Size;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 400;
-      margin: 0;
-      padding: 0;
+    .movie-card__img {
+      width: 30%;
+      border-radius: $movieCardBorder;
+      height: auto;
+      box-shadow: $cardShadow;
     }
-
-    .single__data__secondary__titles {
-      margin: 1em 0 0.5em 0;
-      font-size: $h5Size;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: $letterSpacing;
-    }
-
-    .single__data__synopsis {
-      font-size: 14px;
-      letter-spacing: 0.5px;
-      line-height: 1.3em;
-    }
-
-    .single__data__info {
+    .single__data {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-      width: 80%;
-    }
-
-    .single__data__subtitle {
-      font-size: 12px;
-      margin-top: 0.2em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 600;
-    }
-
-    .single__data__meta {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 1em;
-      .single__data__meta__item {
-        color: $secondaryText;
-      }
-    }
-    .single__data__synopsis {
-      margin: 0;
-      width: 80%;
-    }
-
-    .single__data__genre__ul {
-      display: flex;
-      gap: 1em;
-      margin: 0;
-      padding: 0;
+      flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
-      text-decoration: none;
-      padding-bottom: 2em;
-      .single__data__genre__ul__li__link {
+      height: 100%;
+      margin-left: 2em;
+
+      .single__data__title {
+        font-size: $h2Size;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+      }
+
+      .single__data__secondary__titles {
+        margin: 1em 0 0.5em 0;
+        font-size: $h5Size;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: $letterSpacing;
+      }
+
+      .single__data__synopsis {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        line-height: 1.3em;
+      }
+
+      .single__data__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        width: 80%;
+      }
+
+      .single__data__subtitle {
+        font-size: 12px;
+        margin-top: 0.2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+
+      .single__data__meta {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1em;
+        .single__data__meta__item {
+          color: $secondaryText;
+        }
+      }
+      .single__data__synopsis {
+        margin: 0;
+        width: 80%;
+      }
+
+      .single__data__genre__ul {
+        display: flex;
+        gap: 1em;
+        margin: 0;
+        padding: 0;
+        justify-content: flex-start;
+        align-items: center;
         text-decoration: none;
+        padding-bottom: 2em;
+        .single__data__genre__ul__li__link {
+          text-decoration: none;
 
-        .single__data__genre__ul__li {
-          display: flex;
-          align-items: center;
-          list-style-type: none;
-          margin: 0;
-          background-color: white;
-          padding: 0.5em 1em;
-          color: $primaryColor;
-          font-size: $clickableTextSize;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: $letterSpacing;
-
-          .ri-movie-2-line {
-            margin-right: 0.5em;
+          .single__data__genre__ul__li {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            margin: 0;
+            background-color: white;
+            padding: 0.5em 1em;
+            color: $primaryColor;
             font-size: $clickableTextSize;
-          }
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: $letterSpacing;
 
-          &:hover {
-            background-color: $primaryColorHover;
-            color: white;
             .ri-movie-2-line {
+              margin-right: 0.5em;
+              font-size: $clickableTextSize;
+            }
+
+            &:hover {
+              background-color: $primaryColorHover;
               color: white;
+              .ri-movie-2-line {
+                color: white;
+              }
             }
           }
         }
       }
     }
-  }
-   @media (max-width: $breakpointLaptop) {
-    .single__data__info {
+    @media (max-width: $breakpointLaptop) {
+      .single__data__info {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start !important;
+        gap: 0.5em;
+      }
+    }
+    @media (max-width: $breakpointTablet) {
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start !important;
-      gap: 0.5em;
-    }
-  }
-  @media (max-width: $breakpointTablet) {
-    flex-direction: column;
-    .movie-card__img {
-      min-width: 50%;
-      height: auto;
-    }
+      .movie-card__img {
+        min-width: 50%;
+        height: auto;
+      }
 
-    .single__data {
-      margin: 1em 0 0 0;
+      .single__data {
+        margin: 1em 0 0 0;
+      }
     }
   }
-}
 }
 </style>

@@ -11,7 +11,10 @@
           params: { id: genre.id },
         }"
       >
-        <li :class="[{ selected: isSelected(genre.id) }]" class="genres__ul__li">
+        <li
+          :class="[{ selected: isSelected(genre.id) }]"
+          class="genres__ul__li"
+        >
           <i class="ri-movie-2-line"></i>
           <a class="genres__ul__li__a">{{ genre.name }}</a>
         </li>
@@ -22,27 +25,30 @@
 
 <script>
 import "remixicon/fonts/remixicon.css";
-
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   name: "GenresList",
   created() {
-    this.$store.dispatch("getGenresFromAPI");
+    this.getGenresFromAPI();
   },
   methods: {
-    selectedGenre(genreId) {
-      this.$store.commit("setSelectedGenreId", genreId);
-    },
+    ...mapActions({
+      getGenresFromAPI: "getGenresFromAPI"
+    }),
+    ...mapMutations({
+      selectedGenre: "setSelectedGenreId"
+    }),
     isSelected(id) {
       if (id == this.$route.params.id) {
         return true;
       }
     },
   },
-  computed: {
-    genres() {
-      return this.$store.state.genres;
-    }
-  },
+  computed:
+    mapState({
+      genres: 'genres',
+    }),
+
 };
 </script>
 
@@ -73,10 +79,12 @@ export default {
     width: 100%;
     text-decoration: none;
   }
-  .selected{
-  background-color: $primaryColor;
-  *{color: white !important;}
-}
+  .selected {
+    background-color: $primaryColor;
+    * {
+      color: white !important;
+    }
+  }
   .genres__ul__li {
     width: 100%;
     display: flex;
@@ -108,6 +116,4 @@ export default {
     color: $textsColor;
   }
 }
-
-
 </style>

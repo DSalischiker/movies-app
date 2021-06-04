@@ -8,6 +8,7 @@
 <script>
 import MovieList from "../components/MovieList.vue";
 import Loading from "../components/Loading.vue";
+import {mapState, mapActions} from 'vuex';
 export default {
   name: "Genre",
   props: ["id"],
@@ -16,7 +17,7 @@ export default {
     Loading,
   },
   created() {
-    this.setGenreInState();
+    this.getMoviesByGenreFromAPI(this.genreId);
     this.getGenreName();
   },
   data() {
@@ -25,24 +26,23 @@ export default {
     };
   },
   methods: {
-    setGenreInState() {
-      this.$store.dispatch("getMoviesByGenreFromAPI", this.$route.params.id);
-    },
+    ...mapActions({
+      getMoviesByGenreFromAPI: "getMoviesByGenreFromAPI",
+    }),
     getGenreName() {
-      this.genreName = this.$store.state.genres.filter((genre) => genre.id == this.id)[0].name;
+      this.genreName = this.genres.filter((genre) => genre.id == this.id)[0].name;
       return this.genreName;
     },
   },
   computed: {
+    ...mapState({
+      genres: "genres",
+      moviesByGenre: "moviesByGenre",
+      loadingState: "loadingState",
+    }),
     genreId() {
       return this.$route.params.id;
     },
-    moviesByGenre() {
-      return this.$store.state.moviesByGenre;
-    },
-    loadingState(){
-      return this.$store.state.isLoading;
-    }
   },
 };
 </script>
