@@ -44,6 +44,10 @@ export default {
       text-decoration: none;
       color: white;
       padding: .5em 1em;
+      text-transform: uppercase;
+      letter-spacing: $letterSpacing;
+      font-size: $h5Size;
+      margin-right: 2em;
       &:hover{
         background-color: $primaryColorHover;
       }

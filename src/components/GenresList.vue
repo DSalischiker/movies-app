@@ -70,7 +70,7 @@ export default {
   width: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   .genres__ul__title {
     color: $textsColor;

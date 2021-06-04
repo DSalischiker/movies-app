@@ -93,6 +93,16 @@ export default {
 }
 .movie-card__image__container{
   @include movieCardImage(100%, 325px, $cardShadow, $movieCardBorder);
+  @media(max-width: $breakpointLaptop){
+    @include movieCardImage(100%, 275px, $cardShadow, $movieCardBorder);
+  }
+  @media(max-width: $breakpointTablet){
+    @include movieCardImage(100%, 375px, $cardShadow, $movieCardBorder);
+  }
+  @media(max-width: $breakpointMobile){
+    @include movieCardImage(100%, 400px, $cardShadow, $movieCardBorder);
+  }
+
 }
 
 .movie-card__title {
