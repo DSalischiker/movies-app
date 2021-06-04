@@ -85,13 +85,13 @@ export default {
     align-items: center;
     gap: 0.5em;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: $letterSpacing;
     height: 1.7rem;
     list-style: none;
     cursor: pointer;
     padding: 0rem 0.7rem;
     i {
-      font-size: 12px;
+      font-size: $clickableTextSize;
       color: $textsColor;
     }
     &:hover {
@@ -103,7 +103,7 @@ export default {
     }
   }
   .genres__ul__li__a {
-    font-size: 12px;
+    font-size: $clickableTextSize;
     text-decoration: none;
     color: $textsColor;
   }

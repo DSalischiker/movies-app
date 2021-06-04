@@ -110,7 +110,7 @@ export default {
       if (this.order) {
         return "ascendant";
       } else {
-          return "descendant";
+        return "descendant";
       }
     },
   },
@@ -140,9 +140,19 @@ export default {
   .movie__list__title{
     width: 100%;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: $letterSpacing;
   }
 
+  @media(max-width: $breakpointTablet){
+    flex-direction: column;
+    height: fit-content;
+    justify-content: flex-start;
+    .movie__list__buttons__container{
+      margin: 0;
+      justify-content: flex-start;
+      width: 100%;
+    }
+  }
 }
 
 .movie__list__buttons__container {
@@ -160,7 +170,7 @@ export default {
     color: $primaryColor;
     background: none;
     cursor: pointer;
-    font-size: 12px;
+    font-size: $clickableTextSize;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 0.5em 1em;
@@ -213,6 +223,7 @@ export default {
   }
   @media (max-width: $breakpointMobile) {
     grid-template-columns: repeat(1, 1fr);
+    max-width: 60%;
   }
 }
 </style>

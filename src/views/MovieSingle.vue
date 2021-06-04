@@ -40,9 +40,9 @@
             }}</span>
           </div>
         </div>
-        <h4 class="single__data__titles">Synopsis</h4>
+        <h4 class="single__data__secondary__titles">Synopsis</h4>
         <p class="single__data__synopsis">{{ this.movieData.overview }}</p>
-        <h4 class="single__data__titles">Genres</h4>
+        <h4 class="single__data__secondary__titles">Genres</h4>
         <ul class="single__data__genre__ul">
           <RouterLink
             class="single__data__genre__ul__li__link"
@@ -125,7 +125,7 @@ export default {
 
   .movie-card__img {
     width: 30%;
-    border-radius: 8px;
+    border-radius: $movieCardBorder;
     height: auto;
     box-shadow: $cardShadow;
   }
@@ -136,24 +136,27 @@ export default {
     height: 100%;
     margin-left: 2em;
 
-    .single__data__titles {
+    .single__data__title {
+      font-size: $h2Size;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+    }
+
+    .single__data__secondary__titles {
       margin: 1em 0 0.5em 0;
-      font-size: 16px;
+      font-size: $h5Size;
       font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: $letterSpacing;
     }
 
     .single__data__synopsis {
       font-size: 14px;
       letter-spacing: 0.5px;
       line-height: 1.3em;
-    }
-    .single__data__title {
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 400;
-      margin: 0;
-      padding: 0;
     }
 
     .single__data__info {
@@ -163,12 +166,6 @@ export default {
       margin: 0;
       padding: 0;
       width: 80%;
-
-      /* No funciona */
-      .rating_text {
-        font-size: 8px !important;
-        background-color: chartreuse;
-      }
     }
 
     .single__data__subtitle {
@@ -185,7 +182,7 @@ export default {
       align-items: center;
       gap: 1em;
       .single__data__meta__item {
-        color: #b8b8b8;
+        color: $secondaryText;
       }
     }
     .single__data__synopsis {
@@ -206,17 +203,21 @@ export default {
         text-decoration: none;
 
         .single__data__genre__ul__li {
+          display: flex;
+          align-items: center;
           list-style-type: none;
           margin: 0;
           background-color: white;
           padding: 0.5em 1em;
           color: $primaryColor;
-          font-size: 14px;
+          font-size: $clickableTextSize;
           font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: $letterSpacing;
 
           .ri-movie-2-line {
             margin-right: 0.5em;
-            font-size: 12px;
+            font-size: $clickableTextSize;
           }
 
           &:hover {
@@ -250,8 +251,5 @@ export default {
     }
   }
 }
-
-
-
 }
 </style>

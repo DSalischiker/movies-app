@@ -44,6 +44,24 @@ body {
 }
 body {
   font-family: sans-serif;
+  h1{
+    font-size: $h1Size;
+  }
+  h2{
+    font-size: $h2Size;
+  }
+  h3{
+    font-size: $h3Size;
+  }
+  h4{
+    font-size: $h4Size;
+  }
+  h5{
+    font-size: $h5Size;
+  }
+  h6{
+    font-size: $h6Size;
+  }
   h1,
   h2,
   h3,

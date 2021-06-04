@@ -79,7 +79,7 @@ export default {
   margin: 0 auto 1em auto;
   width: 100%;
   text-align: center;
-  color: #222222;
+  color: $textsColor;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,7 +91,7 @@ export default {
   }
 }
 .movie-card__image__container{
-  border-radius: 8px;
+  border-radius: $movieCardBorder;
   height: 325px;
   box-shadow: rgba(105, 100, 100, 0.35) 0px 5px 15px;
 }
@@ -103,7 +103,7 @@ export default {
 }
 
 .movie-card__img {
-  border-radius: 8px;
+  border-radius: $movieCardBorder;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -125,6 +125,5 @@ export default {
   color: $primaryColor;
   font-weight: 600;
   letter-spacing: 1px;
-  border-radius: 8px;
 }
 </style>
