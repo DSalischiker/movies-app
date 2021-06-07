@@ -1,7 +1,8 @@
 <template>
   <div class="genres__container">
-    <ul class="genres__ul">
+    <ul  class="genres__ul">
       <h3 class="genres__ul__title">Genres</h3>
+      <div class="genres__ul__li__container">
       <RouterLink
         v-for="(genre, $index) in genres"
         :key="$index"
@@ -19,6 +20,7 @@
           <a class="genres__ul__li__a">{{ genre.name }}</a>
         </li>
       </RouterLink>
+      </div>
     </ul>
   </div>
 </template>
@@ -33,10 +35,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      getGenresFromAPI: "getGenresFromAPI"
+      getGenresFromAPI: "getGenresFromAPI",
     }),
     ...mapMutations({
-      selectedGenre: "setSelectedGenreId"
+      selectedGenre: "setSelectedGenreId",
     }),
     isSelected(id) {
       if (id == this.$route.params.id) {
@@ -44,11 +46,11 @@ export default {
       }
     },
   },
-  computed:
-    mapState({
-      genres: 'genres',
+  computed: {
+    ...mapState({
+      genres: "genres",
     }),
-
+  },
 };
 </script>
 
@@ -56,22 +58,53 @@ export default {
 .genres__container {
   background-color: $sideBarColor;
   width: 20%;
-  min-width: 250px;
   height: 90vh;
   top: 10vh;
   position: -webkit-sticky;
   position: sticky;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
+
+  @media (max-width: $breakpointTablet) {
+    width: 100%;
+    min-width: 75px;
+    height: fit-content;
+    position:unset;
+
+    .genres__ul {
+      .genres__ul__title{
+        margin: 0 auto;
+      }
+
+      .genres__ul__li__container{
+        flex-direction: row;
+        flex-flow: row wrap;
+        justify-content: center;
+      }
+
+      .genre__link{
+        width: fit-content;
+      }
+    }
+  }
 }
+
 .genres__ul {
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  .genres__ul__li__container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   .genres__ul__title {
     color: $textsColor;
   }

@@ -41,6 +41,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  min-width: 380px;
 }
 body {
   font-family: sans-serif;
@@ -80,11 +81,14 @@ body {
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 .app__content {
   display: flex;
   width: 100%;
   margin-top: 10vh;
+  @media (max-width: $breakpointTablet) {
+    flex-direction: column;
+  }
 }
 .app__content__container{
   width: 100%;
