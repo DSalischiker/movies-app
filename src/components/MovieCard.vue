@@ -37,7 +37,16 @@ import StarRating from "vue-star-rating";
 import { mapMutations, mapGetters } from "vuex";
 export default {
   name: "MovieCard",
-  props: ["id", "movieData"],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    movieData: {
+      type: Object,
+      required: true,
+    }
+  },
   components: {
     StarRating,
   },
