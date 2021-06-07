@@ -8,6 +8,14 @@
     box-shadow: $shadow;
 }
 
+@mixin makeTitle($color, $weight, $size){
+  text-transform: uppercase;
+  letter-spacing: $letterSpacing;
+  color: $color;
+  font-weight: $weight;
+  font-size: $size;
+}
+
 // variables:
 /* $breakpoint-xs: 360px;
 $breakpoint-sm: 767px;

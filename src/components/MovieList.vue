@@ -123,6 +123,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins.scss";
 .movie__list {
   display: flex;
   width: 100%;
@@ -138,9 +139,8 @@ export default {
   margin: 2em 4em 0 4em;
   padding: 0;
   .movie__list__title{
+    @include makeTitle($primaryColor, 600, $h3Size);
     width: 100%;
-    text-transform: uppercase;
-    letter-spacing: $letterSpacing;
   }
 
   @media(max-width: $breakpointTablet){

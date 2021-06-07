@@ -139,10 +139,7 @@ export default {
       margin-left: 2em;
 
       .single__data__title {
-        font-size: $h2Size;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 400;
+        @include makeTitle($primaryColor, 400, $h2Size);
         margin: 0;
         padding: 0;
       }

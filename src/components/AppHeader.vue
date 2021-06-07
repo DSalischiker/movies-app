@@ -20,6 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins.scss";
 .header {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   z-index: 1;
@@ -34,9 +35,9 @@ export default {
   background-color: $primaryColor;
   color: white;
   .header__title {
+    @include makeTitle(#ffffff, 800, $h1Size);
     margin-left: 1.5em;
     font-size: $h1Size;
-    color: white;
   }
   .header__nav {
     margin-right: 2em;

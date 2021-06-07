@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins.scss";
 .genres__container {
   background-color: $sideBarColor;
   width: 20%;
@@ -66,8 +67,6 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
   font-weight: 600;
 
   @media (max-width: $breakpointTablet) {
@@ -106,7 +105,7 @@ export default {
     flex-direction: column;
   }
   .genres__ul__title {
-    color: $textsColor;
+    @include makeTitle($textsColor, 600, $h3Size);
   }
   .genre__link {
     width: 100%;
