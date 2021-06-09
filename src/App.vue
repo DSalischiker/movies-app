@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- ENVOLVER TODO EN OTRO COMPONENTE PARA DEJAR LIMPIO app.vue -->
     <MovieApp />
   </div>
 </template>

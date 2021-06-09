@@ -1,6 +1,5 @@
 <template>
   <div id="movie__app">
-    <!-- ENVOLVER TODO EN OTRO COMPONENTE PARA DEJAR LIMPIO app.vue -->
     <AppHeader />
 
     <div class="app__content">

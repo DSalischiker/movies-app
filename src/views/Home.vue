@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MovieList from "../components/MovieList.vue";
 import Loading from "../components/Loading.vue";
 import {mapState, mapActions} from 'vuex';
@@ -43,7 +42,6 @@ export default {
   height: 100%;
 }
 .movie__list__grid {
-  /* margin-top: 4em; */
   width: 100%;
   height: 100%;
   display: grid;

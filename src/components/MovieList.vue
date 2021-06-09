@@ -45,7 +45,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MovieCard from "../components/MovieCard.vue";
 import "remixicon/fonts/remixicon.css";
 
