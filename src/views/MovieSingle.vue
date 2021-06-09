@@ -3,7 +3,7 @@
     <div v-if="!loadingState" class="single__container__movie">
       <img
         class="movie-card__img"
-        :src="`https://image.tmdb.org/t/p/w500${this.movieData.poster_path}`"
+        :src="`${this.imageURL}${this.movieData.poster_path}`"
         alt=""
       />
       <div class="single__data">
@@ -111,6 +111,7 @@ export default {
     }),
     ...mapGetters({
       SRConfig: "getStarRatingConfig",
+      imageURL: "getBaseImageURL",
     }),
     movieId() {
       return this.$route.params.id;

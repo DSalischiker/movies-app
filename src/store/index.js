@@ -117,7 +117,10 @@ const store = new Vuex.Store({
   getters: {
     getStarRatingConfig: state => {
       return state.starRatingConfig;
-    }
+    },
+    getBaseImageURL: () => {
+      return process.env.VUE_APP_BASE_IMAGE_URL;
+    },
   },
   modules: {},
 });

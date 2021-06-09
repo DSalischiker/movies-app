@@ -11,7 +11,7 @@
         <div class="content-overlay"></div>
         <img
           class="movie-card__img"
-          :src="`https://image.tmdb.org/t/p/w500${this.movie.poster_path}`"
+          :src="`${this.imageURL}${this.movie.poster_path}`"
           alt=""
         />
       </div>
@@ -72,6 +72,7 @@ export default {
   computed: {
     ...mapGetters({
       SRConfig: "getStarRatingConfig",
+      imageURL: "getBaseImageURL",
     }),
     movie() {
       return this.movieData;
