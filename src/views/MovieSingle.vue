@@ -74,8 +74,9 @@ export default {
   name: "MovieSingle",
   props: {
     id: {
-      type: String,
+      type: [String, Number],
       required: true,
+      default: 0,
     },
   },
   components: {
@@ -84,14 +85,14 @@ export default {
   },
   created() {
     this.setSelectedMovieId(this.movieId);
-    this.getMovieDataFromAPI();
+    this.getMovieData();
   },
   methods: {
     ...mapMutations({
       setSelectedMovieId: "setSelectedMovieId",
     }),
     ...mapActions({
-      getMovieDataFromAPI: "getMovieDataFromAPI",
+      getMovieData: "getMovieData",
     }),
     getReleaseYear() {
       if (this.movieData.release_date) {

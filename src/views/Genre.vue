@@ -22,7 +22,7 @@ export default {
     MovieList,
   },
   created() {
-    this.getMoviesByGenreFromAPI(this.genreId);
+    this.getMoviesByGenre(this.genreId);
     this.getGenreName();
   },
   data() {
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getMoviesByGenreFromAPI: "getMoviesByGenreFromAPI",
+      getMoviesByGenre: "getMoviesByGenre",
     }),
     getGenreName() {
       this.genreName = this.genres.filter((genre) => genre.id == this.id)[0].name;

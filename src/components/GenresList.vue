@@ -31,11 +31,11 @@ import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   name: "GenresList",
   created() {
-    this.getGenresFromAPI();
+    this.getGenres();
   },
   methods: {
     ...mapActions({
-      getGenresFromAPI: "getGenresFromAPI",
+      getGenres: "getGenres",
     }),
     ...mapMutations({
       selectedGenre: "setSelectedGenreId",

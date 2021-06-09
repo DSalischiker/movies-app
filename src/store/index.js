@@ -48,7 +48,7 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    getMoviesFromAPI({ commit }) {
+    getMovies({ commit }) {
       return new Promise((resolve, reject) => {
         commit("setLoadingState", true);
         API.get(`movie/popular?api_key=${process.env.VUE_APP_API_KEY}`)
@@ -64,7 +64,7 @@ const store = new Vuex.Store({
           });
       });
     },
-    getGenresFromAPI({ commit }) {
+    getGenres({ commit }) {
       return new Promise((resolve, reject) => {
         API.get(`genre/movie/list?api_key=${process.env.VUE_APP_API_KEY}`)
           .then((response) => {
@@ -77,7 +77,7 @@ const store = new Vuex.Store({
           });
       });
     },
-    getMoviesByGenreFromAPI({commit}, id){
+    getMoviesByGenre({commit}, id){
       return new Promise((resolve, reject) => {
         commit("setLoadingState", true);
         API.get(`/discover/movie?api_key=${process.env.VUE_APP_API_KEY}`, {
@@ -97,7 +97,7 @@ const store = new Vuex.Store({
         })
       })
     },
-    getMovieDataFromAPI({ commit, state }) {
+    getMovieData({ commit, state }) {
       return new Promise((resolve, reject) => {
         commit("setLoadingState", true);
         API.get(`movie/${state.selectedMovieId}?api_key=${process.env.VUE_APP_API_KEY}`)

@@ -17,11 +17,11 @@ export default {
     MovieList,
   },
   created() {
-    this.getMoviesFromAPI();
+    this.getMovies();
   },
   methods: {
     ...mapActions({
-    getMoviesFromAPI: "getMoviesFromAPI"
+    getMovies: "getMovies"
     })
   },
   computed: {
