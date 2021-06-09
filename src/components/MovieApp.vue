@@ -1,6 +1,6 @@
 <template>
   <div id="movie__app">
-    <AppHeader />
+    <TheHeader />
 
     <div class="app__content">
       <GenresList />
@@ -8,23 +8,23 @@
         <transition name="fade">
           <RouterView :key="$route.fullPath"/>
         </transition>
-        <AppFooter />
+        <TheFooter />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AppFooter from "./AppFooter.vue";
-import AppHeader from "./AppHeader.vue";
+import TheFooter from "./TheFooter.vue";
+import TheHeader from "./TheHeader.vue";
 import GenresList from "./GenresList.vue";
 
 export default {
   name: "MovieApp",
   components: {
-    AppFooter,
-    AppHeader,
     GenresList,
+    TheFooter,
+    TheHeader,
   },
 };
 </script>

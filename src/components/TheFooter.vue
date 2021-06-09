@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "AppFooter",
+    name: "TheFooter",
 }
 </script>
 

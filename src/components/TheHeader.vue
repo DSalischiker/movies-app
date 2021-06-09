@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "AppHeader",
+  name: "TheHeader",
 };
 </script>
 
