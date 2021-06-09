@@ -29,8 +29,8 @@
       </div>
     </div>
     <span class="movie__list__order__text"
-      >Order by: {{ this.selectedFilter ? this.selectedFilter : "none" }},
-      {{ this.getOrderString() ? this.getOrderString() : "" }}</span
+      >Order by: {{ this.getTextForSelectedSort }},
+      {{ this.getTextForOrder }}</span
     >
     <ul v-if="moviesToShow != []" class="movie__list__grid">
       <MovieCard
@@ -80,7 +80,7 @@ export default {
       this.movies.sort((a, b) => b.vote_average - a.vote_average);
     },
     sortByPremiere() {
-      this.selectedFilter = "release Year";
+      this.selectedFilter = "release year";
       this.sortLaunch = !this.sortLaunch;
       this.sortRating = false;
       this.movies.sort((a, b) => {
@@ -118,6 +118,12 @@ export default {
     movies() {
       return this.moviesToShow;
     },
+    getTextForSelectedSort(){
+      return this.selectedFilter ? this.selectedFilter : "none";
+    },
+    getTextForOrder(){
+      return this.getOrderString() ? this.getOrderString() : "";
+    }
   },
 };
 </script>
