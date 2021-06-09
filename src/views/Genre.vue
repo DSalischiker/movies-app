@@ -15,7 +15,7 @@ export default {
   name: "Genre",
   props: {
     id: {
-      type: String,
+      type: [Number, String],
       required: true,
     },
   },
