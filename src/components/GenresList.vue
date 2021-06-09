@@ -57,7 +57,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
 .genres__container {
   background-color: $sideBarColor;
   width: 20%;

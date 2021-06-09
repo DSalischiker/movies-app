@@ -86,7 +86,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
 .movie-card {
   text-decoration: none;
 }

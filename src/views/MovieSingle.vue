@@ -124,7 +124,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
 .single__container {
   display: flex;
   justify-content: flex-start;

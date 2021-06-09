@@ -129,7 +129,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
 .movie__list {
   display: flex;
   width: 100%;

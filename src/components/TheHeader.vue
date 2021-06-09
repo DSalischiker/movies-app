@@ -14,7 +14,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/mixins.scss";
 .header {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   z-index: 1;
