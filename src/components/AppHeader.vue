@@ -10,11 +10,6 @@
 <script>
 export default {
   name: "AppHeader",
-  methods: {
-    selectView(name) {
-      this.$emit("selectView", name);
-    },
-  },
 };
 </script>
 
