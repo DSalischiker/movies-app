@@ -62,10 +62,15 @@ export default {
       textClass: "rating-text",
     };
   },
-  methods: mapMutations({
+  methods: {
+    ...mapMutations({
     selectMovie: "setSelectedMovieId",
-  }),
+    })
+  },
   computed: {
+    ...mapGetters({
+      SRConfig: "getStarRatingConfig",
+    }),
     movie() {
       return this.movieData;
     },
@@ -73,9 +78,6 @@ export default {
       //Esto puede ser un getter en store
       return this.movieData.vote_average / 2;
     },
-    ...mapGetters({
-      SRConfig: "getStarRatingConfig",
-    }),
   },
 };
 </script>

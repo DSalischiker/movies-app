@@ -19,14 +19,17 @@ export default {
   created() {
     this.getMoviesFromAPI();
   },
-  methods: mapActions({
+  methods: {
+    ...mapActions({
     getMoviesFromAPI: "getMoviesFromAPI"
-  }),
-  computed:
-  mapState({
+    })
+  },
+  computed: {
+    ...mapState({
     movies: 'movies',
     loadingState: 'isLoading',
-  })
+    })
+  },
 };
 </script>
 

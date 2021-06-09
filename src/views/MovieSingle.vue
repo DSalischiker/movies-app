@@ -96,19 +96,19 @@ export default {
   },
   },
   computed: {
-    movieId() {
-      return this.$route.params.id;
-    },
     ...mapState({
       movieData: "selectedMovieData",
       loadingState: 'isLoading',
     }),
+    ...mapGetters({
+      SRConfig: "getStarRatingConfig",
+    }),
+    movieId() {
+      return this.$route.params.id;
+    },
     rating() {
       return this.movieData.vote_average / 2;
     },
-    ...mapGetters({
-      SRConfig: "getStarRatingConfig",
-    })
   },
 };
 </script>

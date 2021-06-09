@@ -9,11 +9,6 @@ const routes = [
     name: "Home",
     component: () =>
       import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
-    meta: {
-      breadcrumb: [
-        {name: 'Home'}
-      ]
-    }
   },
   {
     path: "/genre/:id",
@@ -21,11 +16,6 @@ const routes = [
     props: true,
     component: () =>
       import(/* webpackChunkName: "GenreList" */ "../views/Genre.vue"),
-      meta: {
-        breadcrumb: [
-          {name: 'Genre'}
-        ]
-      }
   },
   {
     path: "/movie/:id",
@@ -33,11 +23,6 @@ const routes = [
     props: true,
     component: () =>
       import(/* webpackChunkName: "MovieSingle" */ "../views/MovieSingle.vue"),
-      meta: {
-        breadcrumb: [
-          {name: 'Movie'}
-        ]
-      }
   }
 ];
 

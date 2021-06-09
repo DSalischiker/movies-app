@@ -14,7 +14,6 @@ export default {
     selectView(name) {
       this.$emit("selectView", name);
     },
-
   },
 };
 </script>
