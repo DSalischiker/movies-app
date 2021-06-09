@@ -39,7 +39,7 @@ export default {
   name: "MovieCard",
   props: {
     id: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     movieData: {
