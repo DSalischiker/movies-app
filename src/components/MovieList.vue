@@ -45,8 +45,9 @@
 </template>
 
 <script>
-import MovieCard from "../components/MovieCard.vue";
 import "remixicon/fonts/remixicon.css";
+
+import MovieCard from "../components/MovieCard.vue";
 
 export default {
   name: "MovieList",

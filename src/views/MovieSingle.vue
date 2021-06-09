@@ -66,10 +66,13 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+
 import StarRating from "vue-star-rating";
 import "remixicon/fonts/remixicon.css";
+
 import Loading from "../components/Loading.vue";
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+
 export default {
   name: "MovieSingle",
   props: {

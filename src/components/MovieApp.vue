@@ -15,9 +15,10 @@
 </template>
 
 <script>
+import AppFooter from "./AppFooter.vue";
 import AppHeader from "./AppHeader.vue";
 import GenresList from "./GenresList.vue";
-import AppFooter from "./AppFooter.vue";
+
 export default {
   name: "MovieApp",
   components: {

@@ -26,8 +26,10 @@
 </template>
 
 <script>
-import "remixicon/fonts/remixicon.css";
 import { mapState, mapMutations, mapActions } from "vuex";
+
+import "remixicon/fonts/remixicon.css";
+
 export default {
   name: "GenresList",
   created() {

@@ -6,9 +6,11 @@
 </template>
 
 <script>
+import {mapState, mapActions} from "vuex";
+
 import MovieList from "../components/MovieList.vue";
 import Loading from "../components/Loading.vue";
-import {mapState, mapActions} from "vuex";
+
 export default {
   name: "Genre",
   props: {

@@ -33,8 +33,10 @@
 </template>
 
 <script>
-import StarRating from "vue-star-rating";
 import { mapMutations, mapGetters } from "vuex";
+
+import StarRating from "vue-star-rating";
+
 export default {
   name: "MovieCard",
   props: {
