@@ -69,13 +69,18 @@
 import StarRating from "vue-star-rating";
 import "remixicon/fonts/remixicon.css";
 import Loading from "../components/Loading.vue";
-import { mapState,  mapActions , mapMutations, mapGetters } from "vuex";
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
 export default {
   name: "MovieSingle",
-  props: ["id"],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
-    StarRating,
     Loading,
+    StarRating,
   },
   created() {
     this.setSelectedMovieId(this.movieId);
@@ -83,22 +88,22 @@ export default {
   },
   methods: {
     ...mapMutations({
-    setSelectedMovieId: "setSelectedMovieId",
-  }),
-  ...mapActions({
-    getMovieDataFromAPI: "getMovieDataFromAPI",
-  }),
-  getReleaseYear() {
-    if (this.movieData.release_date) {
-      const releaseYear = this.movieData.release_date.substring(0, 4);
-      return releaseYear;
-    }
-  },
+      setSelectedMovieId: "setSelectedMovieId",
+    }),
+    ...mapActions({
+      getMovieDataFromAPI: "getMovieDataFromAPI",
+    }),
+    getReleaseYear() {
+      if (this.movieData.release_date) {
+        const releaseYear = this.movieData.release_date.substring(0, 4);
+        return releaseYear;
+      }
+    },
   },
   computed: {
     ...mapState({
       movieData: "selectedMovieData",
-      loadingState: 'isLoading',
+      loadingState: "isLoading",
     }),
     ...mapGetters({
       SRConfig: "getStarRatingConfig",
@@ -114,7 +119,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/mixins.scss';
+@import "../assets/mixins.scss";
 .single__container {
   display: flex;
   justify-content: flex-start;
@@ -129,7 +134,7 @@ export default {
     align-items: flex-start;
 
     .movie-card__img {
-      @include movieCardImage(30%, auto, $cardShadow,  $movieCardBorder);
+      @include movieCardImage(30%, auto, $cardShadow, $movieCardBorder);
     }
     .single__data {
       display: flex;

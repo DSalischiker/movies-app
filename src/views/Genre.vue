@@ -8,13 +8,18 @@
 <script>
 import MovieList from "../components/MovieList.vue";
 import Loading from "../components/Loading.vue";
-import {mapState, mapActions} from 'vuex';
+import {mapState, mapActions} from "vuex";
 export default {
   name: "Genre",
-  props: ["id"],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
-    MovieList,
     Loading,
+    MovieList,
   },
   created() {
     this.getMoviesByGenreFromAPI(this.genreId);

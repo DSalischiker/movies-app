@@ -21,9 +21,9 @@ import AppFooter from "./AppFooter.vue";
 export default {
   name: "MovieApp",
   components: {
+    AppFooter,
     AppHeader,
     GenresList,
-    AppFooter,
   },
 };
 </script>

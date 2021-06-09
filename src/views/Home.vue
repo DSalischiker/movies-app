@@ -8,13 +8,13 @@
 <script>
 import MovieList from "../components/MovieList.vue";
 import Loading from "../components/Loading.vue";
-import {mapState, mapActions} from 'vuex';
+import {mapState, mapActions} from "vuex";
 
 export default {
   name: "Home",
   components: {
-    MovieList,
     Loading,
+    MovieList,
   },
   created() {
     this.getMoviesFromAPI();
@@ -26,8 +26,8 @@ export default {
   },
   computed: {
     ...mapState({
-    movies: 'movies',
-    loadingState: 'isLoading',
+    movies: "movies",
+    loadingState: "isLoading",
     })
   },
 };
