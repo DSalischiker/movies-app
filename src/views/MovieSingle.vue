@@ -1,6 +1,6 @@
 <template>
   <div class="single__container">
-    <div v-if="!loadingState" class="single__container__movie">
+    <div v-if="!loadingState && noError" class="single__container__movie">
       <img
         class="movie-card__img"
         :src="`${this.imageURL}${this.movieData.poster_path}`"
@@ -61,7 +61,8 @@
         </ul>
       </div>
     </div>
-    <Loading v-else />
+    <Loading v-else-if="loadingState" />
+    <ErrorCard :error="error" from="movie" v-show="!noError"/>
   </div>
 </template>
 
@@ -71,6 +72,7 @@ import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
 import StarRating from "vue-star-rating";
 import "remixicon/fonts/remixicon.css";
 
+import ErrorCard from "../components/ErrorCard.vue";
 import Loading from "../components/Loading.vue";
 
 export default {
@@ -83,6 +85,7 @@ export default {
     },
   },
   components: {
+    ErrorCard,
     Loading,
     StarRating,
   },
@@ -108,10 +111,12 @@ export default {
     ...mapState({
       movieData: "selectedMovieData",
       loadingState: "isLoading",
+      error: "requestError",
     }),
     ...mapGetters({
       SRConfig: "getStarRatingConfig",
       imageURL: "getBaseImageURL",
+      noError: "noError",
     }),
     movieId() {
       return this.$route.params.id;
@@ -239,6 +244,7 @@ export default {
         }
       }
     }
+
     @media (max-width: $breakpointLaptop) {
       .single__data__info {
         flex-direction: column;

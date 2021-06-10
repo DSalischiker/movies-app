@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     selectedMovieId: null,
     selectedMovieData: {},
     isLoading: false,
+    requestError: 0,
     starRatingConfig: {
       increment: 0.1,
       starSize: 13,
@@ -45,6 +46,9 @@ const store = new Vuex.Store({
     },
     setLoadingState(state, loadingState){
       state.isLoading = loadingState;
+    },
+    setRequestError(state, error){
+      state.requestError = error;
     }
   },
   actions: {
@@ -104,11 +108,13 @@ const store = new Vuex.Store({
           .then((response) => {
             commit("setMovieData", response.data);
             commit("setLoadingState", false);
+            commit("setRequestError", 0);
             resolve(response);
           })
           .catch((error) => {
             console.error(error);
             commit("setLoadingState", false);
+            commit("setRequestError", error.response.status);
             reject(error);
           });
       });
@@ -121,6 +127,9 @@ const store = new Vuex.Store({
     getBaseImageURL: () => {
       return process.env.VUE_APP_BASE_IMAGE_URL;
     },
+    noError: state => {
+      return state.requestError == 0;
+    }
   },
   modules: {},
 });
