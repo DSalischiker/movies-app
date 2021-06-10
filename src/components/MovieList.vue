@@ -147,8 +147,7 @@ export default {
     @include makeTitle($primaryColor, 600, $h3Size);
     width: 100%;
   }
-
-  @media(max-width: $breakpointTablet){
+  @include forTablet {
     flex-direction: column;
     height: fit-content;
     justify-content: flex-start;
@@ -220,13 +219,13 @@ export default {
     list-style: none;
   }
 
-  @media (max-width: $breakpointLaptop) {
+  @include forLaptop {
     grid-template-columns: repeat(4, 1fr);
   }
-  @media (max-width: $breakpointTablet) {
+  @include forTablet {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: $breakpointMobile) {
+  @include forMobile {
     grid-template-columns: repeat(1, 1fr);
     max-width: 60%;
   }

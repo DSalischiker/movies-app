@@ -106,13 +106,13 @@ export default {
 }
 .movie-card__image__container {
   @include movieCardImage(100%, 325px, $cardShadow, $movieCardBorder);
-  @media (max-width: $breakpointLaptop) {
+  @include forLaptop {
     @include movieCardImage(100%, 275px, $cardShadow, $movieCardBorder);
   }
-  @media (max-width: $breakpointTablet) {
+  @include forTablet {
     @include movieCardImage(100%, 375px, $cardShadow, $movieCardBorder);
   }
-  @media (max-width: $breakpointMobile) {
+  @include forMobile {
     @include movieCardImage(100%, 400px, $cardShadow, $movieCardBorder);
   }
   position: relative;

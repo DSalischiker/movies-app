@@ -86,7 +86,7 @@ body {
   display: flex;
   width: 100%;
   margin-top: 10vh;
-  @media (max-width: $breakpointTablet) {
+  @include forTablet {
     flex-direction: column;
   }
 }

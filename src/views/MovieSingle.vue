@@ -244,8 +244,7 @@ export default {
         }
       }
     }
-
-    @media (max-width: $breakpointLaptop) {
+    @include forLaptop{
       .single__data__info {
         flex-direction: column;
         justify-content: flex-start;
@@ -253,7 +252,8 @@ export default {
         gap: 0.5em;
       }
     }
-    @media (max-width: $breakpointTablet) {
+
+    @include forTablet {
       flex-direction: column;
       .movie-card__img {
         min-width: 50%;

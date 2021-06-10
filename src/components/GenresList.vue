@@ -70,7 +70,7 @@ export default {
   align-items: center;
   font-weight: 600;
 
-  @media (max-width: $breakpointTablet) {
+  @include forTablet {
     width: 100%;
     min-width: 75px;
     height: fit-content;
